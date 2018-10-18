@@ -1,2 +1,2 @@
-# www
-Разработка WEB с Gulp
+# gulp-web
+Web Разработка с Gulp
