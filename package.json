@@ -1,0 +1,35 @@
+{
+  "name": "gulp-web",
+  "version": "1.0.0",
+  "description": "Web Разработка с Gulp",
+  "main": "Gulpfile.js",
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WebProWWW/gulp-web.git"
+  },
+  "keywords": [
+    "Gulp",
+    "Stylus",
+    "CoffeeScript",
+    "HTML",
+    "Reload"
+  ],
+  "author": "Timur Vliyev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WebProWWW/gulp-web/issues"
+  },
+  "homepage": "https://github.com/WebProWWW/gulp-web#readme",
+  "devDependencies": {
+    "gulp": "^4.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-coffee": "^3.0.2",
+    "gulp-header": "^2.0.5",
+    "gulp-include": "^2.3.1",
+    "gulp-refresh": "^1.1.0",
+    "gulp-stylus": "^2.7.0"
+  }
+}

@@ -1,0 +1,98 @@
+
+for i in (0..100)
+  percent = (i * 1%)
+  pixel = (i * 1px)
+  .size-{i}
+    font-size pixel
+  .wpx-{i}, .whpx-{i}
+    width pixel
+  .hpx-{i}, .whpx-{i}
+    height pixel
+  .w-{i}, .wh-{i}
+    width percent
+  .h-{i}, .wh-{i}
+    height percent
+  .m
+    &-{i}
+      margin pixel
+    &r-{i}, &x-{i}
+      margin-right pixel
+    &l-{i}, &x-{i}
+      margin-left pixel
+    &t-{i}, &y-{i}
+      margin-top pixel
+    &b-{i}, &y-{i}
+      margin-bottom pixel
+  .p
+    &-{i}
+      padding pixel
+    &r-{i}, &x-{i}
+      padding-right pixel
+    &l-{i}, &x-{i}
+      padding-left pixel
+    &t-{i}, &y-{i}
+      padding-top pixel
+    &b-{i}, &y-{i}
+      padding-bottom pixel
+  .mp
+    &-{i}
+      margin percent
+    &r-{i}, &x-{i}
+      margin-right percent
+    &l-{i}, &x-{i}
+      margin-left percent
+    &t-{i}, &y-{i}
+      margin-top percent
+    &b-{i}, &y-{i}
+      margin-bottom percent
+  .pp
+    &-{i}
+      padding percent
+    &r-{i}, &x-{i}
+      padding-right percent
+    &l-{i}, &x-{i}
+      padding-left percent
+    &t-{i}, &y-{i}
+      padding-top percent
+    &b-{i}, &y-{i}
+      padding-bottom percent
+
+
+.m
+  &-auto
+    margin auto
+  &r-auto, &x-auto
+    margin-right auto
+  &l-auto, &x-auto
+    margin-left auto
+  &t-auto, &y-auto
+    margin-top auto
+  &b-auto, &y-auto
+    margin-bottom auto
+
+.w-auto
+  width auto
+.h-auto
+  height auto
+
+.text
+  &-right
+    text-align right
+  &-left
+    text-align left
+  &-center
+    text-align center
+
+
+@media (min-width: 576px)
+  .m
+    &-sm-auto
+      margin auto
+    &r-sm-auto, &x-sm-auto
+      margin-right auto
+    &l-sm-auto, &x-sm-auto
+      margin-left auto
+    &t-sm-auto, &y-sm-auto
+      margin-top auto
+    &b-sm-auto, &y-sm-auto
+      margin-bottom auto

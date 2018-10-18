@@ -1,0 +1,167 @@
+
+makeMP(value, class)
+  .p
+    &r-{class}, &x-{class}
+      padding-right value
+    &l-{class}, &x-{class}
+      padding-left value
+    &t-{class}, &y-{class}
+      padding-top value
+    &b-{class}, &y-{class}
+      padding-bottom value
+    &-{class}
+      padding value
+
+  .m
+    &r-{class}, &x-{class}
+      margin-right value
+    &l-{class}, &x-{class}
+      margin-left value
+    &t-{class}, &y-{class}
+      margin-top value
+    &b-{class}, &y-{class}
+      margin-bottom value
+    &-{class}
+      margin value
+
+makeWH(value, class)
+  .w, .wh
+    &-{class}
+      width value
+  .h, .wh
+    &-{class}
+      height value
+
+makeEm(value, class)
+  .em-{class}
+    font-size round(value, 1)
+
+makeClasses(class)
+  .text
+    &-{class}right
+      text-align right
+    &-{class}left
+      text-align left
+    &-{class}center
+      text-align center
+    &-{class}justify
+      text-align justify
+    &-{class}upper
+      text-transform uppercase
+  .img
+    &-{class}fluid
+      max-width 100%
+      height auto
+  .mp-{class}0
+    margin 0
+    padding 0
+  .d-{class}none
+    display none
+  .d-{class}block
+    display block
+  .d-{class}inline
+    display inline
+  .d-{class}flex
+    display flex
+  .d-{class}inline-flex
+    display inline-flex
+  .flex-{class}row
+    flex-direction row
+  .flex-{class}column
+    flex-direction column
+  .flex-{class}row-reverse
+    flex-direction row-reverse
+  .flex-{class}column-reverse
+    flex-direction column-reverse
+  .flex-{class}wrap
+    flex-wrap wrap
+  .flex-{class}nowrap
+    flex-wrap nowrap
+  .flex-{class}wrap-reverse
+    flex-wrap wrap-reverse
+  .flex-{class}fill
+    flex 1 1 auto
+  .flex-{class}grow-0
+    flex-grow 0
+  .flex-{class}grow-1
+    flex-grow 1
+  .flex-{class}shrink-0
+    flex-shrink 0
+  .flex-{class}shrink-1
+    flex-shrink 1
+  .justify-{class}content-start
+    justify-content flex-start
+  .justify-{class}content-end
+    justify-content flex-end
+  .justify-{class}content-center
+    justify-content center
+  .justify-{class}content-between
+    justify-content space-between
+  .justify-{class}content-around
+    justify-content space-around
+  .align-{class}items-start
+    align-items flex-start
+  .align-{class}items-end
+    align-items flex-end
+  .align-{class}items-center
+    align-items center
+  .align-{class}items-baseline
+    align-items baseline
+  .align-{class}items-stretch
+    align-items stretch
+  .align-{class}content-start
+    align-content flex-start
+  .align-{class}content-end
+    align-content flex-end
+  .align-{class}content-center
+    align-content center
+  .align-{class}content-between
+    align-content space-between
+  .align-{class}content-around
+    align-content space-around
+  .align-{class}content-stretch
+    align-content stretch
+  .align-{class}self-auto
+    align-self auto
+  .align-{class}self-start
+    align-self flex-start
+  .align-{class}self-end
+    align-self flex-end
+  .align-{class}self-center
+    align-self center
+  .align-{class}self-baseline
+    align-self baseline
+  .align-{class}self-stretch
+    align-self stretch
+
+makeZ(value, class)
+  .zidx-{class}
+    z-index value
+
+
+makeHelperForMedia(media)
+  makeClasses(media)
+  makeMP((i * 1px), media+i) if i % 5 is 0 for i in (0..100)
+  makeMP(auto, media+'auto')
+  makeWH((i * 1%), media+i) if i % 5 is 0 for i in (0..100)
+  makeWH(auto, media+'auto')
+  makeEm((i * 0.1em), media+i) for i in (1..100)
+  makeZ(i, media+i) for i in (1..100)
+
+
+makeHelperForMedia('')
+
+
+@media (min-width: 480px)
+  makeHelperForMedia('xs-')
+
+@media (min-width: 768px)
+  makeHelperForMedia('sm-')
+
+@media (min-width: 992px)
+  makeHelperForMedia('md-')
+
+@media (min-width: 1200px)
+  makeHelperForMedia('lg-')
+
+

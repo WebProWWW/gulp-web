@@ -1,0 +1,97 @@
+
+makeMP(value, class)
+  .p
+    &r-{class}, &x-{class}
+      padding-right value
+    &l-{class}, &x-{class}
+      padding-left value
+    &t-{class}, &y-{class}
+      padding-top value
+    &b-{class}, &y-{class}
+      padding-bottom value
+    &-{class}
+      padding value
+
+  .m
+    &r-{class}, &x-{class}
+      margin-right value
+    &l-{class}, &x-{class}
+      margin-left value
+    &t-{class}, &y-{class}
+      margin-top value
+    &b-{class}, &y-{class}
+      margin-bottom value
+    &-{class}
+      margin value
+
+makeWH(value, class)
+  .w, .wh
+    &-{class}
+      width value
+  .h, .wh
+    &-{class}
+      height value
+
+makeCol(value, class)
+  colWidth = (value * 100% / 12)
+  .w
+    &-{class}c{value}
+      position relative
+      width 100%
+      min-height 1px
+      flex 0 0 colWidth
+      max-width colWidth
+
+makeEm(value, class)
+  .em-{class}
+    font-size round(value, 1)
+
+makeClasses(class='')
+  .wsp
+    &-{class}nowrap
+      white-space nowrap
+    &-{class}normal
+      white-space normal
+  .text
+    &-{class}right
+      text-align right
+    &-{class}left
+      text-align left
+    &-{class}center
+      text-align center
+    &-{class}justify
+      text-align justify
+    &-{class}upper
+      text-transform uppercase
+  .img
+    &-{class}fluid
+      max-width 100%
+      height auto
+  .mp-{class}0
+    margin 0
+    padding 0
+
+
+makeHelperForMedia(media)
+  makeClasses(media)
+  makeMP((i * 1px), media+i) if i % 5 is 0 for i in (0..100)
+  makeMP(auto, media+'auto')
+  makeWH((i * 1%), media+i) if i % 5 is 0 for i in (0..100)
+  makeWH(auto, media+'auto')
+  makeEm((i * 0.1em), media+i) for i in (1..100)
+  makeCol(i, media) for i in (1..12)
+
+
+makeHelperForMedia('')
+
+@media (min-width: 576px)
+  makeHelperForMedia('sm-')
+
+@media (min-width: 768px)
+  makeHelperForMedia('md-')
+
+@media (min-width: 992px)
+  makeHelperForMedia('lg-')
+
+@media (min-width: 1200px)
+  makeHelperForMedia('xl-')
