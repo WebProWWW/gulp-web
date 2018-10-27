@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # CONFIG
-PATH_WWW="/Volumes/SSD_SYS/Users/timur/www";
-PATH_WWW_ZIP="/Volumes/SSD_SYS/Users/timur/www_zip"
+PATH_WWW="/Users/timur/www";
+PATH_WWW_ZIP="/Users/timur/www_zip"
 PATH_GULP="${PATH_WWW}/gulp-web";
 FILE_HOSTS="/etc/hosts";
 FILE_HOSTS_TMP="${PATH_WWW}/hosts.tmp";
 
 # STR
-STR_TYPE_LIST='\n1 - новый (html)\n2 - новый (cms)\n3 - новый (пустой)\n4 - zip public\n5 - удалить\n6 - обновить hosts\n7 - Gulp\n8 - Gulp cms\n9 - Gulp watch\n\nВведите цифру:';
-STR_TYPE_ERR='Пожалуйста введите цифру от 1 до 4';
+STR_TYPE_LIST='\n1 - новый (html)\n2 - новый (cms)\n3 - новый (пустой)\n4 - zip public\n5 - удалить\n6 - обновить hosts\n7 - Gulp\n8 - Gulp cms\n\nВведите цифру:';
+STR_TYPE_ERR='Пожалуйста введите цифру от 1 до 8';
 STR_START='Запустить сервер?'
 STR_ENABLE='Проекты:';
 STR_PROJECT='проект:';
@@ -80,9 +80,9 @@ function newProjectCms () {
   fi
   mkdir "${NEW_PROJECT_PATH}";
   ln -s "${PATH_GULP}/node_modules" "${NEW_PROJECT_PATH}/node_modules";
-  mkdir -p -m 777 "${NEW_PROJECT_PATH}/public_html/admin-panel";
-  cp -rf "${PATH_GULP}/public_html/"* "${NEW_PROJECT_PATH}/public_html";
-  cp -rf "${PATH_GULP}/public_html/"* "${NEW_PROJECT_PATH}/public_html/admin-panel/";
+  mkdir -p "${NEW_PROJECT_PATH}/public_html/admin-panel";
+  rsync -r "${PATH_GULP}/public_html/"* "${NEW_PROJECT_PATH}/public_html" --exclude='index.html';
+  rsync -r "${PATH_GULP}/public_html/"* "${NEW_PROJECT_PATH}/public_html/admin-panel/" --exclude='index.html';
   mkdir -p "${NEW_PROJECT_PATH}/backend/src";
   mkdir -p "${NEW_PROJECT_PATH}/fronted/src";
   rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/backend/src" --exclude='lib';
@@ -153,7 +153,6 @@ function init () {
     "6" ) updateHostsFile ;;
     "7" ) runGulp "default" ;;
     "8" ) runGulp "cms" ;;
-    "9" ) runGulp "watch" ;;
     * )
       echo -e "\n${STR_TYPE_ERR}";
       init;

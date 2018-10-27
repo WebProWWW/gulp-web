@@ -29,7 +29,7 @@
     "gulp-coffee": "^3.0.2",
     "gulp-header": "^2.0.5",
     "gulp-include": "^2.3.1",
-    "gulp-refresh": "^1.1.0",
+    "gulp-livereload": "^4.0.0",
     "gulp-stylus": "^2.7.0"
   }
 }

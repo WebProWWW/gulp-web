@@ -3,5 +3,8 @@
  * @link https://webprowww.github.io
  */
 
-//=include ./lib/MyClass.coffee
+(function() {
+  //=include ./lib/MyClass.coffee
 
+
+}).call(this);
