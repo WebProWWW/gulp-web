@@ -27,29 +27,29 @@ const conf = {
 
   cms: {
     backend: {
-      stylusWatch: './backend/src/stylus/**/*.styl',
-      stylusSrc: './backend/src/stylus/*.styl',
-      stylusDest: './public_html/admin-panel/css',
+      stylusWatch: './src_html/backend/stylus/**/*.styl',
+      stylusSrc: './src_html/backend/stylus/*.styl',
+      stylusDest: './public_html/admin-panel/html/css',
 
-      coffeeWatch: './backend/src/coffee/**/*.coffee',
-      coffeeSrc: './backend/src/coffee/*.coffee',
-      coffeeDest: './public_html/admin-panel/js',
+      coffeeWatch: './src_html/backend/coffee/**/*.coffee',
+      coffeeSrc: './src_html/backend/coffee/*.coffee',
+      coffeeDest: './public_html/admin-panel/html/js',
 
-      htmlWatch: './backend/src/html/**/*.html',
-      htmlSrc: './backend/src/html/*.html',
+      htmlWatch: './src_html/backend/html/**/*.html',
+      htmlSrc: './src_html/backend/html/*.html',
       htmlDest: './public_html/admin-panel/html'
     },
     fronted: {
-      stylusWatch: './fronted/src/stylus/**/*.styl',
-      stylusSrc: './fronted/src/stylus/*.styl',
-      stylusDest: './public_html/css',
+      stylusWatch: './src_html/fronted/stylus/**/*.styl',
+      stylusSrc: './src_html/fronted/stylus/*.styl',
+      stylusDest: './public_html/html/css',
 
-      coffeeWatch: './fronted/src/coffee/**/*.coffee',
-      coffeeSrc: './fronted/src/coffee/*.coffee',
-      coffeeDest: './public_html/js',
+      coffeeWatch: './src_html/fronted/coffee/**/*.coffee',
+      coffeeSrc: './src_html/fronted/coffee/*.coffee',
+      coffeeDest: './public_html/html/js',
 
-      htmlWatch: './fronted/src/html/**/*.html',
-      htmlSrc: './fronted/src/html/*.html',
+      htmlWatch: './src_html/fronted/html/**/*.html',
+      htmlSrc: './src_html/fronted/html/*.html',
       htmlDest: './public_html/html'
     }
   },

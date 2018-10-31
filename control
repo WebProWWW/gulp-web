@@ -80,17 +80,18 @@ function newProjectCms () {
   fi
   mkdir "${NEW_PROJECT_PATH}";
   ln -s "${PATH_GULP}/node_modules" "${NEW_PROJECT_PATH}/node_modules";
-  mkdir -p "${NEW_PROJECT_PATH}/public_html/admin-panel";
-  rsync -r "${PATH_GULP}/public_html/"* "${NEW_PROJECT_PATH}/public_html" --exclude='index.html';
-  rsync -r "${PATH_GULP}/public_html/"* "${NEW_PROJECT_PATH}/public_html/admin-panel/" --exclude='index.html';
-  mkdir -p "${NEW_PROJECT_PATH}/backend/src";
-  mkdir -p "${NEW_PROJECT_PATH}/fronted/src";
-  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/backend/src" --exclude='lib';
-  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/fronted/src" --exclude='lib';
-  ln -s "${PATH_GULP}/src/coffee/lib" "${NEW_PROJECT_PATH}/backend/src/coffee/lib";
-  ln -s "${PATH_GULP}/src/stylus/lib" "${NEW_PROJECT_PATH}/backend/src/stylus/lib";
-  ln -s "${PATH_GULP}/src/coffee/lib" "${NEW_PROJECT_PATH}/fronted/src/coffee/lib";
-  ln -s "${PATH_GULP}/src/stylus/lib" "${NEW_PROJECT_PATH}/fronted/src/stylus/lib";
+  mkdir -p "${NEW_PROJECT_PATH}/public_html/html";
+  mkdir -p "${NEW_PROJECT_PATH}/public_html/admin-panel/html";
+  mkdir -p "${NEW_PROJECT_PATH}/src_html/backend";
+  mkdir -p "${NEW_PROJECT_PATH}/src_html/fronted";
+  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src_html/backend" --exclude='lib';
+  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src_html/fronted" --exclude='lib';
+  ln -s "${PATH_GULP}/src/coffee/lib" "${NEW_PROJECT_PATH}/src_html/backend/coffee/lib";
+  ln -s "${PATH_GULP}/src/stylus/lib" "${NEW_PROJECT_PATH}/src_html/backend/stylus/lib";
+  ln -s "${PATH_GULP}/src/coffee/lib" "${NEW_PROJECT_PATH}/src_html/fronted/coffee/lib";
+  ln -s "${PATH_GULP}/src/stylus/lib" "${NEW_PROJECT_PATH}/src_html/fronted/stylus/lib";
+  cp -rf "${PATH_GULP}/public_html/"* "${NEW_PROJECT_PATH}/public_html/html"
+  cp -rf "${PATH_GULP}/public_html/"* "${NEW_PROJECT_PATH}/public_html/admin-panel/html";
   rsync -r "${PATH_GULP}/"* "${NEW_PROJECT_PATH}" --exclude={node_modules,public_html,src,control};
   updateHostsFile;
 }
