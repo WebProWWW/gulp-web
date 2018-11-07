@@ -59,6 +59,8 @@ makeClasses(class='')
       text-align left
     &-{class}center
       text-align center
+    &-{class}vcenter
+      vertical-align middle
     &-{class}justify
       text-align justify
     &-{class}upper
@@ -71,6 +73,10 @@ makeClasses(class='')
     margin 0
     padding 0
 
+makeFontWeight(value, class='')
+  .fw-{class}
+      font-weight value
+
 
 makeHelperForMedia(media)
   makeClasses(media)
@@ -79,6 +85,7 @@ makeHelperForMedia(media)
   makeWH((i * 1%), media+i) if i % 5 is 0 for i in (0..100)
   makeWH(auto, media+'auto')
   makeEm((i * 0.1em), media+i) for i in (1..100)
+  makeFontWeight(i, media+i) if i % 100 is 0 for i in (100..900)
   // makeCol(i, media) for i in (1..12)
 
 
