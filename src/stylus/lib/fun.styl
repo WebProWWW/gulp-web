@@ -4,19 +4,16 @@ mpd(m=0, p=0, d=block)
   padding p
 
 
-resetLn(c=black, hc=black, td=false)
-  // &, &:not([href]):not([tabindex])
-  color c
-  text-decoration none unless td
-  outline none
-  appearance none
+resetLn(c=black, hc=black, td=false, htd=false)
   border none
-  cursor pointer
-
-  &:active
-  &:focus
-  &:hover
+  &, &:active, &:focus
+    color c
     text-decoration none unless td
+    outline none
+    appearance none
+    cursor pointer
+  &:hover
+    text-decoration none unless htd
     outline none
     color hc
 

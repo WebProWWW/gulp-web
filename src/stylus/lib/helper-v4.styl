@@ -31,6 +31,12 @@ makeWH(value, class)
   .h, .wh
     &-{class}
       height value
+  .maxw, .maxwh
+    &-{class}
+      max-width value
+  .maxh, .maxwh
+    &-{class}
+      max-height value
 
 makeCol(value, class)
   colWidth = (value * 100% / 12)
@@ -52,6 +58,8 @@ makeClasses(class='')
       white-space nowrap
     &-{class}normal
       white-space normal
+    &-{class}preline
+      white-space pre-line
   .text
     &-{class}right
       text-align right
