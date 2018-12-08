@@ -24,12 +24,12 @@
   },
   "homepage": "https://github.com/WebProWWW/gulp-web#readme",
   "devDependencies": {
-    "gulp": "^4.0",
-    "gulp-autoprefixer": "^6.0.0",
-    "gulp-coffee": "^3.0.2",
-    "gulp-header": "^2.0.5",
-    "gulp-include": "^2.3.1",
-    "gulp-livereload": "^4.0.0",
-    "gulp-stylus": "^2.7.0"
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "*",
+    "gulp-coffee": "*",
+    "gulp-header": "*",
+    "gulp-include": "*",
+    "gulp-livereload": "*",
+    "gulp-stylus": "*"
   }
 }
