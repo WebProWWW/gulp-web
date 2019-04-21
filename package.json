@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/WebProWWW/gulp-web#readme",
   "devDependencies": {
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.1",
     "gulp-autoprefixer": "*",
     "gulp-coffee": "*",
     "gulp-header": "*",
