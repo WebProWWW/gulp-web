@@ -19,6 +19,7 @@ const conf = {
     coffeeWatch: './src/coffee/**/*.coffee',
     coffeeSrc: './src/coffee/*.coffee',
     coffeeDest: './public_html/js',
+    vendorJs: './src/coffee/vendor.js',
 
     htmlWatch: './src/html/**/*.html',
     htmlSrc: './src/html/*.html',
@@ -34,6 +35,7 @@ const conf = {
       coffeeWatch: './src/backend/coffee/**/*.coffee',
       coffeeSrc: './src/backend/coffee/*.coffee',
       coffeeDest: './public_html/admin-panel/js',
+      vendorJs: './src/backend/coffee/vendor.js',
     },
     fronted: {
       stylusWatch: './src/fronted/stylus/**/*.styl',
@@ -43,6 +45,7 @@ const conf = {
       coffeeWatch: './src/fronted/coffee/**/*.coffee',
       coffeeSrc: './src/fronted/coffee/*.coffee',
       coffeeDest: './public_html/js',
+      vendorJs: './src/fronted/coffee/vendor.js'
     }
   },
 
@@ -60,6 +63,7 @@ const conf = {
 const { src, dest, watch } = require('gulp');
 const watcher = watch(conf.watcher);
 
+const fs = require('fs');
 const livereload = require('gulp-livereload');
 const stylus = require('gulp-stylus');
 const include = require('gulp-include');
@@ -75,34 +79,36 @@ function error(err, done) {
   return done();
 }
 
-function compileCoffee(a={done, src, dest}) {
-  return src(a.src)
-    .on('end', function() { return a.done(); })
-    .on('error', function (err) { return error(err, a.done); })
-    .pipe(include(conf.opt.include).on('error', function(err) { return error(err, a.done); }))
-    .pipe(coffee(conf.opt.coffee).on('error', function(err) { return error(err, a.done); }))
+function compileCoffee(config, done) {
+  return src(config.coffeeSrc)
+    .on('end', function() { return done(); })
+    .on('error', function (err) { return error(err, done); })
+    .pipe(include(conf.opt.include).on('error', function(err) { return error(err, done); }))
+    .pipe(coffee(conf.opt.coffee).on('error', function(err) { return error(err, done); }))
     .pipe(header(conf.opt.header))
-    .pipe(dest(a.dest))
+    .pipe(header(fs.readFileSync(config.vendorJs)))
+    .pipe(include(conf.opt.include).on('error', function(err) { return error(err, done); }))
+    .pipe(dest(config.coffeeDest))
     .pipe(livereload());
 }
 
-function compileStylus(a={done, src, dest}) {
-  return src(a.src)
-    .on('end', function() { return a.done(); })
-    .on('error', function (err) { return error(err, a.done); })
-    .pipe(stylus(conf.opt.stylus).on('error', function(err) { return error(err, a.done); }))
-    .pipe(prefixer(conf.opt.prefixer).on('error', function(err) { return error(err, a.done); }))
+function compileStylus(config, done) {
+  return src(config.stylusSrc)
+    .on('end', function() { return done(); })
+    .on('error', function (err) { return error(err, done); })
+    .pipe(stylus(conf.opt.stylus).on('error', function(err) { return error(err, done); }))
+    .pipe(prefixer(conf.opt.prefixer).on('error', function(err) { return error(err, done); }))
     .pipe(header(conf.opt.header))
-    .pipe(dest(a.dest))
+    .pipe(dest(config.stylusDest))
     .pipe(livereload());
 }
 
-function includeHtml(a={done, src, dest}) {
-  return src(a.src)
-    .on('end', function() { return a.done(); })
-    .on('error', function (err) { return error(err, a.done); })
-    .pipe(include(conf.opt.include).on('error', function(err) { return error(err, a.done); }))
-    .pipe(dest(a.dest))
+function includeHtml(config, done) {
+  return src(config.htmlSrc)
+    .on('end', function() { return done(); })
+    .on('error', function (err) { return error(err, done); })
+    .pipe(include(conf.opt.include).on('error', function(err) { return error(err, done); }))
+    .pipe(dest(config.htmlDest))
     .pipe(livereload());
 }
 
@@ -111,15 +117,15 @@ function reloadPage(path) { livereload.reload(path); }
 /* TASKS
  * * * * * * * * * * * * * * * * * * * * *  * * * * * * * * * * * * * * * * * * * * * * */
 
-function defaultStylus(done) { compileStylus({ done:done, src:conf.default.stylusSrc, dest:conf.default.stylusDest }); }
-function defaultCoffee(done) { compileCoffee({ done:done, src:conf.default.coffeeSrc, dest:conf.default.coffeeDest }); }
-function defaultHtml(done) { includeHtml({ done:done, src:conf.default.htmlSrc, dest:conf.default.htmlDest }); }
+function defaultStylus(done) { compileStylus(conf.default, done); }
+function defaultCoffee(done) { compileCoffee(conf.default, done); }
+function defaultHtml(done) { includeHtml(conf.default, done); }
 
-function frontedStylus(done) { compileStylus({ done:done, src:conf.cms.fronted.stylusSrc, dest:conf.cms.fronted.stylusDest }); }
-function frontedCoffee(done) { compileCoffee({ done:done, src:conf.cms.fronted.coffeeSrc, dest:conf.cms.fronted.coffeeDest }); }
+function frontedStylus(done) { compileStylus(conf.fronted, done); }
+function frontedCoffee(done) { compileCoffee(conf.fronted, done); }
 
-function backendStylus(done) { compileStylus({ done:done, src:conf.cms.backend.stylusSrc, dest:conf.cms.backend.stylusDest }); }
-function backendCoffee(done) { compileCoffee({ done:done, src:conf.cms.backend.coffeeSrc, dest:conf.cms.backend.coffeeDest }); }
+function backendStylus(done) { compileStylus(conf.backend, done); }
+function backendCoffee(done) { compileCoffee(conf.backend, done); }
 
 exports.default = function() {
   livereload.listen(conf.opt.livereload);
