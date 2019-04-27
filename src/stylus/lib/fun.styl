@@ -3,7 +3,6 @@ mpd(m=0, p=0, d=block)
   margin m
   padding p
 
-
 resetLn(c=black, hc=black, td=false, htd=false)
   border none
   &, &:active, &:focus
@@ -17,9 +16,23 @@ resetLn(c=black, hc=black, td=false, htd=false)
     outline none
     color hc
 
+resetBtn()
+  display block
+  box-sizing border-box
+  width 100%
+  background transparent
+  text-align center
+  outline none
+  border none
+  appearance none
+  cursor pointer
+
 transAll(t)
   t = (t / 1000s)
   transition t all ease-in-out
+
+b(w=1,  c=black, s=solid)
+  border (w * 1px) s c
 
 arrowToLeft(w, h, c)
   height 0
@@ -48,3 +61,4 @@ arrowToBottom(w, h, c)
   border-left (w/2px) solid transparent
   border-right (w/2px) solid transparent
   border-top (h*1px) solid c
+

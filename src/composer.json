@@ -1,11 +1,16 @@
 {
     "name": "gulp-web/src",
     "type": "library",
-    "license": "MIT",
+    "license": "mit",
     "minimum-stability": "stable",
     "require": {
+        "jquery/jquery": "3.4.0",
+        "vuejs/vue": "2.6.10",
+        "vuejs/vue-router": "3.0.6",
+        "axios/axios": "0.18.0",
         "necolas/normalize.css": "8.0.1",
-        "jquery/jquery": "3.4.0"
+        "twbs/bootstrap": "4.3.1",
+        "fortawesome/font-awesome": "5.8.1"
     },
 
     "repositories": [
@@ -20,6 +25,61 @@
         "version": "3.4.0",
         "dist": {
           "url": "https://github.com/jquery/jquery/archive/3.4.0.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "vuejs/vue",
+        "version": "2.6.10",
+        "dist": {
+          "url": "https://github.com/vuejs/vue/archive/v2.6.10.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "vuejs/vue-router",
+        "version": "3.0.6",
+        "dist": {
+          "url": "https://github.com/vuejs/vue-router/archive/v3.0.6.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "axios/axios",
+        "version": "0.18.0",
+        "dist": {
+          "url": "https://github.com/axios/axios/archive/v0.18.0.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "fortawesome/font-awesome",
+        "version": "5.8.1",
+        "dist": {
+          "url": "https://github.com/fortawesome/font-awesome/archive/5.8.1.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "twbs/bootstrap",
+        "version": "4.3.1",
+        "dist": {
+          "url": "https://github.com/twbs/bootstrap/archive/v4.3.1.zip",
           "type": "zip"
         }
       }

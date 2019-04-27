@@ -4,8 +4,26 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "17b098c0a166bcb8d74a53427f68eb50",
+    "content-hash": "f5153d3253cce32f65607f3e51cf3327",
     "packages": [
+        {
+            "name": "axios/axios",
+            "version": "0.18.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/axios/axios/archive/v0.18.0.zip"
+            },
+            "type": "library"
+        },
+        {
+            "name": "fortawesome/font-awesome",
+            "version": "5.8.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/fortawesome/font-awesome/archive/5.8.1.zip"
+            },
+            "type": "library"
+        },
         {
             "name": "jquery/jquery",
             "version": "3.4.0",
@@ -21,6 +39,33 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/necolas/normalize.css/archive/8.0.1.zip"
+            },
+            "type": "library"
+        },
+        {
+            "name": "twbs/bootstrap",
+            "version": "4.3.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/twbs/bootstrap/archive/v4.3.1.zip"
+            },
+            "type": "library"
+        },
+        {
+            "name": "vuejs/vue",
+            "version": "2.6.10",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/vuejs/vue/archive/v2.6.10.zip"
+            },
+            "type": "library"
+        },
+        {
+            "name": "vuejs/vue-router",
+            "version": "3.0.6",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/vuejs/vue-router/archive/v3.0.6.zip"
             },
             "type": "library"
         }
