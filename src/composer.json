@@ -1,0 +1,40 @@
+{
+    "name": "gulp-web/src",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {
+        "necolas/normalize.css": "8.0.1",
+        "jquery/jquery": "3.4.0"
+    },
+
+    "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "jquery/jquery",
+        "version": "3.4.0",
+        "dist": {
+          "url": "https://github.com/jquery/jquery/archive/3.4.0.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "necolas/normalize.css",
+        "version": "8.0.1",
+        "dist": {
+          "url": "https://github.com/necolas/normalize.css/archive/8.0.1.zip",
+          "type": "zip"
+        }
+      }
+    }
+  ]
+
+}

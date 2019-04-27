@@ -24,12 +24,16 @@
   },
   "homepage": "https://github.com/WebProWWW/gulp-web#readme",
   "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "gulp": "^4.0.1",
     "gulp-autoprefixer": "*",
+    "gulp-babel": "^8.0.0",
     "gulp-coffee": "*",
     "gulp-header": "*",
     "gulp-include": "*",
     "gulp-livereload": "*",
-    "gulp-stylus": "*"
+    "gulp-stylus": "*",
+    "gulp-uglify": "^3.0.2"
   }
 }

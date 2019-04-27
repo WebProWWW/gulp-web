@@ -63,10 +63,11 @@ function newProject () {
   mkdir "${NEW_PROJECT_PATH}";
   ln -s "${PATH_GULP}/node_modules" "${NEW_PROJECT_PATH}/node_modules";
   cp -rf "${PATH_GULP}/public_html" "${NEW_PROJECT_PATH}/";
-  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src" --exclude='lib';
+  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src" --exclude={'lib','vendor'};
+  ln -s "${PATH_GULP}/src/vendor" "${NEW_PROJECT_PATH}/src/vendor";
   ln -s "${PATH_GULP}/src/coffee/lib" "${NEW_PROJECT_PATH}/src/coffee/lib";
   ln -s "${PATH_GULP}/src/stylus/lib" "${NEW_PROJECT_PATH}/src/stylus/lib";
-  rsync -r "${PATH_GULP}/"* "${NEW_PROJECT_PATH}" --exclude={node_modules,public_html,src,control};
+  rsync -r "${PATH_GULP}/"* "${NEW_PROJECT_PATH}" --exclude={'node_modules','public_html','src','control'};
   updateHostsFile;
 }
 
@@ -83,13 +84,14 @@ function newProjectCms () {
   mkdir -p "${NEW_PROJECT_PATH}/src/backend";
   mkdir -p "${NEW_PROJECT_PATH}/src/fronted";
   mkdir -p "${NEW_PROJECT_PATH}/public_html";
-  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src/backend" --exclude={lib,html};
-  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src/fronted" --exclude={lib,html};
+  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src/backend" --exclude={'lib','html','vendor'};
+  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src/fronted" --exclude={'lib','html','vendor'};
+  ln -s "${PATH_GULP}/src/vendor" "${NEW_PROJECT_PATH}/src/vendor";
   ln -s "${PATH_GULP}/src/coffee/lib" "${NEW_PROJECT_PATH}/src/backend/coffee/lib";
   ln -s "${PATH_GULP}/src/stylus/lib" "${NEW_PROJECT_PATH}/src/backend/stylus/lib";
   ln -s "${PATH_GULP}/src/coffee/lib" "${NEW_PROJECT_PATH}/src/fronted/coffee/lib";
   ln -s "${PATH_GULP}/src/stylus/lib" "${NEW_PROJECT_PATH}/src/fronted/stylus/lib";
-  rsync -r "${PATH_GULP}/"* "${NEW_PROJECT_PATH}" --exclude={node_modules,public_html,src,control};
+  rsync -r "${PATH_GULP}/"* "${NEW_PROJECT_PATH}" --exclude={'node_modules','public_html','src','control'};
   updateHostsFile;
 }
 
@@ -101,13 +103,7 @@ function newProjectEmpty () {
     newProjectEmpty;
     return 0;
   fi
-  mkdir -p "${NEW_PROJECT_PATH}";
-  ln -s "${PATH_GULP}/node_modules" "${NEW_PROJECT_PATH}/node_modules";
-  cp -rf "${PATH_GULP}/public_html" "${NEW_PROJECT_PATH}/";
-  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src" --exclude='lib';
-  ln -s "${PATH_GULP}/src/coffee/lib" "${NEW_PROJECT_PATH}/src/coffee/lib";
-  ln -s "${PATH_GULP}/src/stylus/lib" "${NEW_PROJECT_PATH}/src/stylus/lib";
-  rsync -r "${PATH_GULP}/"* "${NEW_PROJECT_PATH}" --exclude={node_modules,public_html,src,control};
+  mkdir -p "${NEW_PROJECT_PATH}/public_html";
   updateHostsFile;
 }
 
