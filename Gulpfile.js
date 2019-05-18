@@ -55,7 +55,8 @@ const conf = {
     './**/*.php',
     './public_html/**/*.svg',
     '!./runtime/**/*.php',
-    '!./vendor/**/*.php'
+    '!./vendor/**/*.php',
+    '!./src/vendor/**/*.php'
   ]
 };
 

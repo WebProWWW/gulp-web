@@ -26,14 +26,14 @@
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
-    "gulp": "^4.0.1",
-    "gulp-autoprefixer": "*",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
     "gulp-babel": "^8.0.0",
-    "gulp-coffee": "*",
-    "gulp-header": "*",
-    "gulp-include": "*",
-    "gulp-livereload": "*",
-    "gulp-stylus": "*",
+    "gulp-coffee": "^3.0.3",
+    "gulp-header": "^2.0.7",
+    "gulp-include": "^2.4.1",
+    "gulp-livereload": "^4.0.1",
+    "gulp-stylus": "^2.7.0",
     "gulp-uglify": "^3.0.2"
   }
 }

@@ -4,13 +4,13 @@
     "license": "mit",
     "minimum-stability": "stable",
     "require": {
-        "jquery/jquery": "3.4.0",
+        "jquery/jquery": "3.4.1",
         "vuejs/vue": "2.6.10",
         "vuejs/vue-router": "3.0.6",
+        "vuejs/vuex": "3.1.1",
         "axios/axios": "0.18.0",
-        "necolas/normalize.css": "8.0.1",
         "twbs/bootstrap": "4.3.1",
-        "fortawesome/font-awesome": "5.8.1"
+        "fortawesome/font-awesome": "5.8.2"
     },
 
     "repositories": [
@@ -22,9 +22,9 @@
       "type": "package",
       "package": {
         "name": "jquery/jquery",
-        "version": "3.4.0",
+        "version": "3.4.1",
         "dist": {
-          "url": "https://github.com/jquery/jquery/archive/3.4.0.zip",
+          "url": "https://github.com/jquery/jquery/archive/3.4.1.zip",
           "type": "zip"
         }
       }
@@ -68,7 +68,7 @@
         "name": "fortawesome/font-awesome",
         "version": "5.8.1",
         "dist": {
-          "url": "https://github.com/fortawesome/font-awesome/archive/5.8.1.zip",
+          "url": "https://github.com/fortawesome/font-awesome/archive/5.8.2.zip",
           "type": "zip"
         }
       }
@@ -87,10 +87,10 @@
     {
       "type": "package",
       "package": {
-        "name": "necolas/normalize.css",
-        "version": "8.0.1",
+        "name": "vuejs/vuex",
+        "version": "3.1.1",
         "dist": {
-          "url": "https://github.com/necolas/normalize.css/archive/8.0.1.zip",
+          "url": "https://github.com/vuejs/vuex/archive/v3.1.1.zip",
           "type": "zip"
         }
       }

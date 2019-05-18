@@ -2,162 +2,99 @@
 
 # CONFIG
 PATH_WWW="/Users/timur/www";
-PATH_WWW_ZIP="/Users/timur/www_zip"
-PATH_GULP="${PATH_WWW}/gulp-web";
+PATH_SOURCE="${PATH_WWW}/gulp-web";
 FILE_HOSTS="/etc/hosts";
 FILE_HOSTS_TMP="${PATH_WWW}/hosts.tmp";
 
 # STR
-STR_TYPE_LIST='\n1 - новый (html)\n2 - новый (cms)\n3 - новый (пустой)\n4 - zip public\n5 - удалить\n6 - обновить hosts\n7 - Gulp\n8 - Gulp cms\n\nВведите цифру:';
+STR_TYPE_LIST='\n1 - новый \n2 - новый (cms)\n3 - новый (пустой)\n4 - удалить\n5 - обновить hosts\n\nВведите цифру:';
 STR_TYPE_ERR='Пожалуйста введите цифру от 1 до 8';
-STR_START='Запустить сервер?'
 STR_ENABLE='Проекты:';
 STR_PROJECT='проект:';
 STR_NAME_ERR='Пожалуйста, введите название проекта';
 STR_NEW='Новый проект: ';
-STR_NEW_EMPTY='Новый проект (пустой): ';
-STR_NEW_SUCCESS='Новый проект успешно создан. Получайте удовольствие от разроботки :)';
 STR_NEW_ERR='Вы ввели название существующего проекта';
-STR_RUN='Открыть проект: ';
-STR_RUN_SUCCESS='Проект успешно открыт. Получайте удовольствие от успешной сдачи :)';
-STR_PACK='Упакавать проект: ';
-STR_PACK_ENABLE='Cуществующие архивы:';
-STR_PACK_V='Версия: ';
-STR_PACK_V_ERR='Введите версию архива';
-STR_PACK_SUCCESS='Архив успешно создан. Оплата Вашего труда, красит Вашу жизнь :)';
-STR_PACK_ERR='Вы ввели название не существующего проекта';
-STR_RM='Удалить проект: ';
-STR_RM_SUCCESS='Проект успешно стерт. Заполняйте пустоту радостью';
-STR_RM_ERR='Вы ввели название не существующего проекта';
-
 
 function readProjectName () {
-  echo -ne "\n${STR_PROJECT} ";
-  read PROJECT_NAME;
-  if [[ ! "${PROJECT_NAME}" ]]; then
-    echo -e "\n${STR_NAME_ERR}";
-    readProjectName;
-  fi
+    echo -ne "\n${STR_PROJECT} ";
+    read PROJECT_NAME;
+    if [[ ! "${PROJECT_NAME}" ]]; then
+        echo -e "\n${STR_NAME_ERR}";
+        readProjectName;
+    fi
+    PROJECT_PATH="${PATH_WWW}/${PROJECT_NAME}";
+    if [[ $1 != false ]]; then
+        if [[ -d "${PROJECT_PATH}" ]]; then
+            echo -e "\n${STR_NEW_ERR}";
+            readProjectName;
+        fi
+    fi
 }
 
 function updateHostsFile () {
-  newHosts='### local server start ###';
-  for project in $(ls -d "${PATH_WWW}/"*/); do
-    locHost="127.0.0.1 $(basename "${project}").loc";
-    newHosts="$newHosts\n${locHost}";
-  done
-  newHosts="${newHosts}\n### local server end ###";
-  sed "/### local server start ###/,/### local server end ###/d" $FILE_HOSTS > $FILE_HOSTS_TMP;
-  echo -e $newHosts >> $FILE_HOSTS_TMP;
-  sudo mv $FILE_HOSTS_TMP $FILE_HOSTS;
+    newHosts='### local server start ###';
+    for project in $(ls -d "${PATH_WWW}/"*/); do
+        locHost="127.0.0.1 $(basename "${project}").loc";
+        newHosts="$newHosts\n${locHost}";
+    done
+    newHosts="${newHosts}\n### local server end ###";
+    sed "/### local server start ###/,/### local server end ###/d" $FILE_HOSTS > $FILE_HOSTS_TMP;
+    echo -e $newHosts >> $FILE_HOSTS_TMP;
+    sudo mv $FILE_HOSTS_TMP $FILE_HOSTS;
 }
 
 function newProject () {
-  readProjectName;
-  NEW_PROJECT_PATH="${PATH_WWW}/${PROJECT_NAME}";
-  if [[ -d "${NEW_PROJECT_PATH}" ]]; then
-    echo -e "\n${STR_NEW_ERR}";
-    newProject;
-    return 0;
-  fi
-  mkdir "${NEW_PROJECT_PATH}";
-  ln -s "${PATH_GULP}/node_modules" "${NEW_PROJECT_PATH}/node_modules";
-  cp -rf "${PATH_GULP}/public_html" "${NEW_PROJECT_PATH}/";
-  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src" --exclude={'lib','vendor'};
-  ln -s "${PATH_GULP}/src/vendor" "${NEW_PROJECT_PATH}/src/vendor";
-  ln -s "${PATH_GULP}/src/coffee/lib" "${NEW_PROJECT_PATH}/src/coffee/lib";
-  ln -s "${PATH_GULP}/src/stylus/lib" "${NEW_PROJECT_PATH}/src/stylus/lib";
-  rsync -r "${PATH_GULP}/"* "${NEW_PROJECT_PATH}" --exclude={'node_modules','public_html','src','control'};
-  updateHostsFile;
+    readProjectName;
+    mkdir "${PROJECT_PATH}";
+    rsync -r "${PATH_SOURCE}/"* "${PROJECT_PATH}" --exclude={'node_modules','control','src/vendor'};
+    ln -s "${PATH_SOURCE}/node_modules" "${PROJECT_PATH}/node_modules";
+    ln -s "${PATH_SOURCE}/src/vendor" "${PROJECT_PATH}/src/vendor";
+    updateHostsFile;
 }
 
 function newProjectCms () {
-  readProjectName;
-  NEW_PROJECT_PATH="${PATH_WWW}/${PROJECT_NAME}";
-  if [[ -d "${NEW_PROJECT_PATH}" ]]; then
-    echo -e "\n${STR_NEW_ERR}";
-    newProjectCms;
-    return 0;
-  fi
-  mkdir "${NEW_PROJECT_PATH}";
-  ln -s "${PATH_GULP}/node_modules" "${NEW_PROJECT_PATH}/node_modules";
-  mkdir -p "${NEW_PROJECT_PATH}/src/backend";
-  mkdir -p "${NEW_PROJECT_PATH}/src/fronted";
-  mkdir -p "${NEW_PROJECT_PATH}/public_html";
-  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src/backend" --exclude={'lib','html','vendor'};
-  rsync -r "${PATH_GULP}/src/"* "${NEW_PROJECT_PATH}/src/fronted" --exclude={'lib','html','vendor'};
-  ln -s "${PATH_GULP}/src/vendor" "${NEW_PROJECT_PATH}/src/vendor";
-  ln -s "${PATH_GULP}/src/coffee/lib" "${NEW_PROJECT_PATH}/src/backend/coffee/lib";
-  ln -s "${PATH_GULP}/src/stylus/lib" "${NEW_PROJECT_PATH}/src/backend/stylus/lib";
-  ln -s "${PATH_GULP}/src/coffee/lib" "${NEW_PROJECT_PATH}/src/fronted/coffee/lib";
-  ln -s "${PATH_GULP}/src/stylus/lib" "${NEW_PROJECT_PATH}/src/fronted/stylus/lib";
-  rsync -r "${PATH_GULP}/"* "${NEW_PROJECT_PATH}" --exclude={'node_modules','public_html','src','control'};
-  updateHostsFile;
+    readProjectName;
+    mkdir -p "${PROJECT_PATH}/src/backend";
+    mkdir -p "${PROJECT_PATH}/src/fronted";
+    rsync -r "${PATH_SOURCE}/"* "${PROJECT_PATH}" --exclude={'node_modules','src','control'};
+    rsync -r "${PATH_SOURCE}/src/"* "${PROJECT_PATH}/src/backend" --exclude={'vendor','composer.json','composer.lock'};
+    rsync -r "${PATH_SOURCE}/src/"* "${PROJECT_PATH}/src/fronted" --exclude={'vendor','composer.json','composer.lock'};
+    cp "${PATH_SOURCE}/src/composer.json" "${PATH_SOURCE}/src/composer.lock" "${PROJECT_PATH}/src/"
+    ln -s "${PATH_SOURCE}/node_modules" "${PROJECT_PATH}/node_modules";
+    ln -s "${PATH_SOURCE}/src/vendor" "${PROJECT_PATH}/src/vendor";
+    updateHostsFile;
 }
 
 function newProjectEmpty () {
-  readProjectName;
-  NEW_PROJECT_PATH="${PATH_WWW}/${PROJECT_NAME}";
-  if [[ -d "${NEW_PROJECT_PATH}" ]]; then
-    echo -e "\n${STR_NEW_ERR}";
-    newProjectEmpty;
-    return 0;
-  fi
-  mkdir -p "${NEW_PROJECT_PATH}/public_html";
-  updateHostsFile;
-}
-
-function zipProject() {
-  readProjectName;
-  projectPublic="${PATH_WWW}/${PROJECT_NAME}/public_html";
-  # if [[ ! -d "${projectZip}" ]]; then
-  #   mkdir "${projectZip}"
-  # else
-  #   ls "${projectZip}"
-  # fi
-  echo -ne 'версия:';
-  read version;
-  cd "${projectPublic}";
-  if [[ ! -d "${PATH_WWW_ZIP}/${PROJECT_NAME}" ]]; then
-    mkdir "${PATH_WWW_ZIP}/${PROJECT_NAME}"
-  fi
-  zip -r "${PATH_WWW_ZIP}/${PROJECT_NAME}/${PROJECT_NAME}.v${version}.zip" ./*;
+    readProjectName;
+    mkdir -p "${PROJECT_PATH}/public_html";
+    updateHostsFile;
 }
 
 function rmProject () {
-  readProjectName;
-  rm -rf "/${PATH_WWW}/${PROJECT_NAME}";
-  updateHostsFile;
-}
-
-function runGulp () {
-  readProjectName;
-  project="${PATH_WWW}/${PROJECT_NAME}";
-  cd "${project}";
-  gulp $1;
+    readProjectName false;
+    rm -rf "/${PATH_WWW}/${PROJECT_NAME}";
+    updateHostsFile;
 }
 
 function init () {
-  echo -e "\n${STR_ENABLE}\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n";
-  ls "${PATH_WWW}/";
-  echo -e "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n";
-  echo -ne "${STR_TYPE_LIST} ";
-  read TYPE;
-  case "${TYPE}" in
-    "1" ) newProject ;;
-    "2" ) newProjectCms ;;
-    "3" ) newProjectEmpty ;;
-    "4" ) zipProject ;;
-    "5" ) rmProject ;;
-    "6" ) updateHostsFile ;;
-    "7" ) runGulp "default" ;;
-    "8" ) runGulp "cms" ;;
-    * )
-      echo -e "\n${STR_TYPE_ERR}";
-      init;
-      return 0;
-    ;;
-  esac
+    echo -e "\n${STR_ENABLE}\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n";
+    ls "${PATH_WWW}/";
+    echo -e "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n";
+    echo -ne "${STR_TYPE_LIST} ";
+    read TYPE;
+    case "${TYPE}" in
+        "1" ) newProject ;;
+        "2" ) newProjectCms ;;
+        "3" ) newProjectEmpty ;;
+        "4" ) rmProject true;;
+        "5" ) updateHostsFile ;;
+        * )
+            echo -e "\n${STR_TYPE_ERR}";
+            init;
+            return 0;
+        ;;
+    esac
 }
 
 init;

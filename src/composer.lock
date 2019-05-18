@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5153d3253cce32f65607f3e51cf3327",
+    "content-hash": "6933b113a23d1caf2f2c47116b5f1974",
     "packages": [
         {
             "name": "axios/axios",
@@ -17,28 +17,73 @@
         },
         {
             "name": "fortawesome/font-awesome",
-            "version": "5.8.1",
+            "version": "5.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "e05a1219784935ff5beb6bfb17cdc86bc848d0bb"
+            },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/fortawesome/font-awesome/archive/5.8.1.zip"
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/e05a1219784935ff5beb6bfb17cdc86bc848d0bb",
+                "reference": "e05a1219784935ff5beb6bfb17cdc86bc848d0bb",
+                "shasum": ""
             },
-            "type": "library"
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC-BY-4.0",
+                "OFL-1.1",
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Travis Chase",
+                    "homepage": "http://twitter.com/supercodepoet"
+                },
+                {
+                    "name": "Dave Gandy",
+                    "homepage": "http://twitter.com/davegandy"
+                },
+                {
+                    "name": "Rob Madole",
+                    "homepage": "http://twitter.com/robmadole"
+                },
+                {
+                    "name": "Jory Raphael",
+                    "homepage": "http://twitter.com/sensibleworld"
+                },
+                {
+                    "name": "Geremia Taglialatela",
+                    "homepage": "http://twitter.com/gtagliala"
+                },
+                {
+                    "name": "Brian Talbot",
+                    "homepage": "http://twitter.com/talbs"
+                },
+                {
+                    "name": "Mike Wilkerson",
+                    "homepage": "http://twitter.com/mw77"
+                }
+            ],
+            "description": "The iconic font, CSS, and SVG framework",
+            "homepage": "https://fontawesome.com",
+            "keywords": [
+                "FontAwesome",
+                "awesome",
+                "bootstrap",
+                "font",
+                "icon",
+                "svg"
+            ],
+            "time": "2019-05-07T17:37:12+00:00"
         },
         {
             "name": "jquery/jquery",
-            "version": "3.4.0",
+            "version": "3.4.1",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/jquery/jquery/archive/3.4.0.zip"
-            },
-            "type": "library"
-        },
-        {
-            "name": "necolas/normalize.css",
-            "version": "8.0.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/necolas/normalize.css/archive/8.0.1.zip"
+                "url": "https://github.com/jquery/jquery/archive/3.4.1.zip"
             },
             "type": "library"
         },
@@ -66,6 +111,15 @@
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/vuejs/vue-router/archive/v3.0.6.zip"
+            },
+            "type": "library"
+        },
+        {
+            "name": "vuejs/vuex",
+            "version": "3.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/vuejs/vuex/archive/v3.1.1.zip"
             },
             "type": "library"
         }
