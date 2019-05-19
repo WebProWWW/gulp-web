@@ -39,16 +39,16 @@ const conf = {
     vendorJs: './src/backend/vendor.js',
   },
   
-  fronted: {
-    stylusWatch: './src/fronted/stylus/**/*.styl',
-    stylusSrc: './src/fronted/stylus/*.styl',
+  frontend: {
+    stylusWatch: './src/frontend/stylus/**/*.styl',
+    stylusSrc: './src/frontend/stylus/*.styl',
     stylusDest: './public_html/css',
-    vendorCss: './src/fronted/vendor.css',
+    vendorCss: './src/frontend/vendor.css',
 
-    coffeeWatch: './src/fronted/coffee/**/*.coffee',
-    coffeeSrc: './src/fronted/coffee/*.coffee',
+    coffeeWatch: './src/frontend/coffee/**/*.coffee',
+    coffeeSrc: './src/frontend/coffee/*.coffee',
     coffeeDest: './public_html/js',
-    vendorJs: './src/fronted/vendor.js'
+    vendorJs: './src/frontend/vendor.js'
   },
 
   watcher: [
@@ -128,8 +128,8 @@ function defaultStylus(done) { compileStylus(conf.default, done); }
 function defaultCoffee(done) { compileCoffee(conf.default, done); }
 function defaultHtml(done) { includeHtml(conf.default, done); }
 
-function frontedStylus(done) { compileStylus(conf.fronted, done); }
-function frontedCoffee(done) { compileCoffee(conf.fronted, done); }
+function frontendStylus(done) { compileStylus(conf.frontend, done); }
+function frontendCoffee(done) { compileCoffee(conf.frontend, done); }
 
 function backendStylus(done) { compileStylus(conf.backend, done); }
 function backendCoffee(done) { compileCoffee(conf.backend, done); }
@@ -143,8 +143,8 @@ exports.default = function() {
 
 exports.cms = function() {
   livereload.listen(conf.opt.livereload);
-  watch(conf.fronted.stylusWatch, frontedStylus);
-  watch(conf.fronted.coffeeWatch, frontedCoffee);
+  watch(conf.frontend.stylusWatch, frontendStylus);
+  watch(conf.frontend.coffeeWatch, frontendCoffee);
   watch(conf.backend.stylusWatch, backendStylus);
   watch(conf.backend.coffeeWatch, backendCoffee);
 };

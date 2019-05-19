@@ -55,10 +55,10 @@ function newProject () {
 function newProjectCms () {
     readProjectName;
     mkdir -p "${PROJECT_PATH}/src/backend";
-    mkdir -p "${PROJECT_PATH}/src/fronted";
+    mkdir -p "${PROJECT_PATH}/src/frontend";
     rsync -r "${PATH_SOURCE}/"* "${PROJECT_PATH}" --exclude={'node_modules','src','control'};
     rsync -r "${PATH_SOURCE}/src/"* "${PROJECT_PATH}/src/backend" --exclude={'vendor','composer.json','composer.lock'};
-    rsync -r "${PATH_SOURCE}/src/"* "${PROJECT_PATH}/src/fronted" --exclude={'vendor','composer.json','composer.lock'};
+    rsync -r "${PATH_SOURCE}/src/"* "${PROJECT_PATH}/src/frontend" --exclude={'vendor','composer.json','composer.lock'};
     cp "${PATH_SOURCE}/src/composer.json" "${PATH_SOURCE}/src/composer.lock" "${PROJECT_PATH}/src/"
     ln -s "${PATH_SOURCE}/node_modules" "${PROJECT_PATH}/node_modules";
     ln -s "${PATH_SOURCE}/src/vendor" "${PROJECT_PATH}/src/vendor";
