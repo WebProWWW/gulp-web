@@ -5,7 +5,7 @@ const conf = {
   opt: {
     header: '/*\n * @author Timur Valiyev\n * @link https://webprowww.github.io\n */\n\n',
     stylus: { compress: true },
-    prefixer: { browsers:['last 2 versions'], cascade:false },
+    prefixer: { Browserslist:['last 2 versions'], cascade:false },
     coffee: { bare: false, transpile: {presets: ["@babel/preset-env"]} },
     livereload: { basePath: './public_html/' },
     include: { hardFail:false }
