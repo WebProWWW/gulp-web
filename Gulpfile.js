@@ -15,12 +15,12 @@ const conf = {
     stylusWatch: './src/stylus/**/*.styl',
     stylusSrc: './src/stylus/*.styl',
     stylusDest: './public_html/css',
-    vendorCss: './src/vendor.css',
+    vendorCss: './src/include.css',
 
     coffeeWatch: './src/coffee/**/*.coffee',
     coffeeSrc: './src/coffee/*.coffee',
     coffeeDest: './public_html/js',
-    vendorJs: './src/vendor.js',
+    vendorJs: './src/include.js',
 
     htmlWatch: './src/html/**/*.html',
     htmlSrc: './src/html/*.html',
@@ -31,24 +31,24 @@ const conf = {
     stylusWatch: './src/backend/stylus/**/*.styl',
     stylusSrc: './src/backend/stylus/*.styl',
     stylusDest: './public_html/admin-panel/css',
-    vendorCss: './src/backend/vendor.css',
+    vendorCss: './src/backend/include.css',
 
     coffeeWatch: './src/backend/coffee/**/*.coffee',
     coffeeSrc: './src/backend/coffee/*.coffee',
     coffeeDest: './public_html/admin-panel/js',
-    vendorJs: './src/backend/vendor.js',
+    vendorJs: './src/backend/include.js',
   },
   
   frontend: {
     stylusWatch: './src/frontend/stylus/**/*.styl',
     stylusSrc: './src/frontend/stylus/*.styl',
     stylusDest: './public_html/css',
-    vendorCss: './src/frontend/vendor.css',
+    vendorCss: './src/frontend/include.css',
 
     coffeeWatch: './src/frontend/coffee/**/*.coffee',
     coffeeSrc: './src/frontend/coffee/*.coffee',
     coffeeDest: './public_html/js',
-    vendorJs: './src/frontend/vendor.js'
+    vendorJs: './src/frontend/include.js'
   },
 
   watcher: [
