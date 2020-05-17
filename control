@@ -7,8 +7,8 @@ FILE_HOSTS="/etc/hosts";
 FILE_HOSTS_TMP="${PATH_WWW}/hosts.tmp";
 
 # STR
-STR_TYPE_LIST='\n1 - новый \n2 - новый (cms)\n3 - новый (пустой)\n4 - удалить\n5 - обновить hosts\n\nВведите цифру:';
-STR_TYPE_ERR='Пожалуйста введите цифру от 1 до 8';
+STR_TYPE_LIST='\n1 - новый (gulp) \n2 - новый (пустой)\n3 - обновить hosts\n4 - удалить проект\n\nВведите цифру:';
+STR_TYPE_ERR='Пожалуйста введите цифру от 1 до 4';
 STR_ENABLE='Проекты:';
 STR_PROJECT='проект:';
 STR_NAME_ERR='Пожалуйста, введите название проекта';
@@ -46,18 +46,7 @@ function updateHostsFile () {
 function newProject () {
     readProjectName;
     mkdir "${PROJECT_PATH}";
-    rsync -r "${PATH_SOURCE}/"* "${PROJECT_PATH}" --exclude={'node_modules','control'};
-    ln -s "${PATH_SOURCE}/node_modules" "${PROJECT_PATH}/node_modules";
-    updateHostsFile;
-}
-
-function newProjectCms () {
-    readProjectName;
-    mkdir -p "${PROJECT_PATH}/src/backend";
-    mkdir -p "${PROJECT_PATH}/src/frontend";
-    rsync -r "${PATH_SOURCE}/"* "${PROJECT_PATH}" --exclude={'node_modules','src','control'};
-    rsync -r "${PATH_SOURCE}/src/"* "${PROJECT_PATH}/src/backend"
-    rsync -r "${PATH_SOURCE}/src/"* "${PROJECT_PATH}/src/frontend"
+    rsync -r "${PATH_SOURCE}/" "${PROJECT_PATH}" --exclude={'node_modules','control','.git','.gitignore'};
     ln -s "${PATH_SOURCE}/node_modules" "${PROJECT_PATH}/node_modules";
     updateHostsFile;
 }
@@ -82,10 +71,9 @@ function init () {
     read TYPE;
     case "${TYPE}" in
         "1" ) newProject ;;
-        "2" ) newProjectCms ;;
-        "3" ) newProjectEmpty ;;
-        "4" ) rmProject true;;
-        "5" ) updateHostsFile ;;
+        "2" ) newProjectEmpty ;;
+        "3" ) updateHostsFile;;
+        "4" ) rmProject ;;
         * )
             echo -e "\n${STR_TYPE_ERR}";
             init;
