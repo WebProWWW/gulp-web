@@ -1,2 +1,2 @@
 
-//=require ../include/jquery-3.4.1.min.js
+//=require ../include/jquery-3.5.1.min.js
