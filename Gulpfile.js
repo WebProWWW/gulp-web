@@ -76,7 +76,7 @@ function compileStylus(done) {
         .on('end', function() { return done() })
         .on('error', function (err) { return error(err, done) })
         .pipe(stylus(conf.opt.stylus).on('error', function(err) { return error(err, done) }))
-        .pipe(postcss(conf.opt.postcss))
+        .pipe(postcss(conf.opt.postcss).on('error', function(err) { return error(err, done) }))
         .pipe(header(conf.opt.header))
         .pipe(header(fs.readFileSync(conf.vendorCss)))
         .pipe(include(conf.opt.include).on('error', function(err) { return error(err, done) }))
