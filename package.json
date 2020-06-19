@@ -15,7 +15,8 @@
     "Stylus",
     "CoffeeScript",
     "HTML",
-    "Reload"
+    "Livereload",
+    "PHP"
   ],
   "author": "Timur Vliyev",
   "license": "ISC",
@@ -24,8 +25,8 @@
   },
   "homepage": "https://github.com/WebProWWW/gulp-web#readme",
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "autoprefixer": "^9.8.0",
     "cssnano": "^4.1.10",
     "gulp": "^4.0.2",

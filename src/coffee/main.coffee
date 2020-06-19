@@ -1,1 +1,2 @@
-##=include ./lib/MyClass.coffee
+
+#=include lib/MyClass.coffee

@@ -1,8 +1,7 @@
 /* PLUGINS
- * * * * * * * * * * * * * * * * * * * * *  * * * * * * * * * * * * * * * * * * * * * * */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 const { src, dest, watch } = require('gulp')
-const fs = require('fs')
 const include = require('gulp-include')
 const header = require('gulp-header')
 const stylus = require('gulp-stylus')
@@ -15,28 +14,40 @@ const livereload = require('gulp-livereload')
 
 
 /* CONFIG
- * * * * * * * * * * * * * * * * * * * * *  * * * * * * * * * * * * * * * * * * * * * * */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 const conf = {
+    // OPTIONS
     opt: {
-        header: '/*!\n * @author Timur Valiyev\n * @link https://webprowww.github.io\n */\n\n',
+        header: '/*!\n * @author Timur Valiyev\n * @link https://webprowww.github.io\n */\n',
         stylus: { compress: false },
         postcss: [ autoprefixer(), cssnano() ],
         coffee: { bare: false, transpile: { presets: ["@babel/preset-env"] } },
-        include: { hardFail: false },
-        livereload: { basePath: './public_html' },
+        includeCoffee: { hardFail: false, includePaths: __dirname + '/src/coffee' },
+        includeStylus: { hardFail: false, includePaths: __dirname + '/src/stylus' },
+        includeDepends: { hardFail: false, includePaths: __dirname + '/src/depends' },
     },
-    stylusWatch: [ './src/stylus/**/*.styl', './src/**/*.css' ],
+    // CSS
+    stylusWatch: './src/stylus/**/*.styl',
     stylusSrc: './src/stylus/*.styl',
     stylusDest: './public_html/css',
-    vendorCss: './src/include.css',
-    coffeeWatch: [ './src/coffee/**/*.coffee', './src/**/*.js' ],
+    // JS
+    coffeeWatch: './src/coffee/**/*.coffee',
     coffeeSrc: './src/coffee/*.coffee',
     coffeeDest: './public_html/js',
-    vendorJs: './src/include.js',
+    // JS DEPENDS
+    dependsJsWatch: './src/depends/**/*.js',
+    dependsJsSrc: './src/depends/*.js',
+    dependsJsDest: './public_html/js',
+    // CSS DEPENDS
+    dependsCssWatch: './src/depends/**/*.css',
+    dependsCssSrc: './src/depends/*.css',
+    dependsCssDest: './public_html/css',
+    // HTML
     htmlWatch: './src/html/**/*.html',
     htmlSrc: './src/html/*.html',
     htmlDest: './public_html',
+    // WATCH
     watcher: [
         './**/*.php',
         './public_html/**/*.svg',
@@ -50,7 +61,7 @@ const conf = {
 
 
 /* FUNCTIONS
- * * * * * * * * * * * * * * * * * * * * *  * * * * * * * * * * * * * * * * * * * * * * */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 function error (err, done) {
     console.log(err.message)
@@ -61,12 +72,10 @@ function compileCoffee(done) {
     return src(conf.coffeeSrc)
         .on('end', function() { return done() })
         .on('error', function (err) { return error(err, done) })
-        .pipe(include(conf.opt.include).on('error', function(err) { return error(err, done) }))
+        .pipe(include(conf.opt.includeCoffee).on('error', function(err) { return error(err, done) }))
         .pipe(coffee(conf.opt.coffee).on('error', function(err) { return error(err, done) }))
         .pipe(uglify().on('error', function(err) { return error(err, done) }))
         .pipe(header(conf.opt.header))
-        .pipe(header(fs.readFileSync(conf.vendorJs)))
-        .pipe(include(conf.opt.include).on('error', function(err) { return error(err, done) }))
         .pipe(dest(conf.coffeeDest))
         .pipe(livereload())
 }
@@ -77,10 +86,28 @@ function compileStylus(done) {
         .on('error', function (err) { return error(err, done) })
         .pipe(stylus(conf.opt.stylus).on('error', function(err) { return error(err, done) }))
         .pipe(postcss(conf.opt.postcss).on('error', function(err) { return error(err, done) }))
+        .pipe(include(conf.opt.includeStylus).on('error', function(err) { return error(err, done) }))
         .pipe(header(conf.opt.header))
-        .pipe(header(fs.readFileSync(conf.vendorCss)))
-        .pipe(include(conf.opt.include).on('error', function(err) { return error(err, done) }))
         .pipe(dest(conf.stylusDest))
+        .pipe(livereload())
+}
+
+function dependsJs(done) {
+    return src(conf.dependsJsSrc)
+        .on('end', function() { return done() })
+        .on('error', function (err) { return error(err, done) })
+        .pipe(include(conf.opt.includeDepends).on('error', function(err) { return error(err, done) }))
+        .pipe(dest(conf.dependsJsDest))
+        .pipe(livereload())
+
+}
+
+function dependsCss(done) {
+    return src(conf.dependsCssSrc)
+        .on('end', function() { return done() })
+        .on('error', function (err) { return error(err, done) })
+        .pipe(include(conf.opt.includeDepends).on('error', function(err) { return error(err, done) }))
+        .pipe(dest(conf.dependsCssDest))
         .pipe(livereload())
 }
 
@@ -100,7 +127,7 @@ function reloadPage(done) {
 
 
 /* TASKS
- * * * * * * * * * * * * * * * * * * * * *  * * * * * * * * * * * * * * * * * * * * * * */
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 
  exports.default = function() {
@@ -108,6 +135,8 @@ function reloadPage(done) {
     watch(conf.stylusWatch, compileStylus)
     watch(conf.coffeeWatch, compileCoffee)
     watch(conf.htmlWatch, includeHtml)
+    watch(conf.dependsJsWatch, dependsJs)
+    watch(conf.dependsCssWatch, dependsCss)
     watch(conf.watcher, reloadPage)
 }
 
