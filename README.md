@@ -17,7 +17,7 @@
 - Google Chrome: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
 - Firefox: https://addons.mozilla.org/ru/firefox/addon/livereload-web-extension/
 
-#### <a href="https://github.com/WebProWWW/gulp-web/releases" target="_blank">Скачать</a> последний релиз этого проекта
+#### <a href="https://github.com/WebProWWW/gulp-web/archive/v5.0.0.zip" target="_blank">Скачать</a> последний релиз этого проекта
 
 - Релизы: https://github.com/WebProWWW/gulp-web/releases
 - Распаковать скаченный архив в директорию вашего нового проекта
