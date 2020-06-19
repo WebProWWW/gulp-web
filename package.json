@@ -19,7 +19,7 @@
     "PHP"
   ],
   "author": "Timur Vliyev",
-  "license": "ISC",
+  "license": "BSD 3-Clause",
   "bugs": {
     "url": "https://github.com/WebProWWW/gulp-web/issues"
   },
