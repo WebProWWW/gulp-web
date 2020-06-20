@@ -22,6 +22,36 @@
 - Релизы: https://github.com/WebProWWW/gulp-web/releases
 - Распаковать скаченный архив в директорию вашего нового проекта
 
+#### Структура директории
+
+```
+public_html/                Корень сайта доступная через браузер.
+    css/                    Вывод скомпилированных CSS
+    js/                     Вывод скомпилированных JavaScript
+    index.html              Входной файл
+src/                        Ресурсы для Gulp
+    stylus/                 Препроцессор Stylus
+        lib/                Функции и т.п.
+        main.styl           Компилируется в public_html/css/main.css
+        example.styl        Компилируется в public_html/css/example.css
+    coffee/                 Синтаксический сахар CoffeeScript
+        lib/                Классы файлы и т.п
+        main.coffee         Компилируется в public_html/js/main.js
+        example.coffee      Компилируется в public_html/js/example.js
+    depends/                Зависимости
+        vendor/             Библиотеки jQuery, Bootstrap и т.п
+        main.depends.css    Копируется в public_html/css/main.depends.css
+        main.depends.js     Копируется в public_html/js/main.depends.js
+        any.depends.css     Копируется в public_html/css/any.depends.css
+        any.depends.js      Копируется в public_html/js/any.depends.js
+    html/                   HTML страницы
+        tpl/                HTML кусочки кода header, footer и т.п.
+        index.html          Копируется в public_html/index.html
+        about.html          Копируется в public_html/about.html
+Gulpfile.js                 Конфигурация Gulp
+.browserslistrc             Совместимость с браузерами
+```
+
 #### Локальный сервер
 > Путь `/path-to/my-project` указан только для примера, вы должны указать свой
 - Настроить локальный сервер так чтобы публичная директория была `public_html` в вашем проекте
