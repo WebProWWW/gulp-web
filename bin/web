@@ -46,7 +46,7 @@ function updateHostsFile () {
 function newProject () {
     readProjectName;
     mkdir "${PROJECT_PATH}";
-    rsync -r "${PATH_SOURCE}/" "${PROJECT_PATH}" --exclude={'node_modules','control','.git','.gitignore'};
+    rsync -r "${PATH_SOURCE}/" "${PROJECT_PATH}" --exclude={'node_modules','bin','.git','.gitignore'};
     ln -s "${PATH_SOURCE}/node_modules" "${PROJECT_PATH}/node_modules";
     updateHostsFile;
 }
