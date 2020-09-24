@@ -13,12 +13,10 @@
 ## Установка
 
 #### Расширение <a href="http://livereload.com" target="_blank">LiveReload</a> для браузера
-
 - Google Chrome: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
 - Firefox: https://addons.mozilla.org/ru/firefox/addon/livereload-web-extension/
 
 #### <a href="https://github.com/WebProWWW/gulp-web/archive/v5.0.1.zip" target="_blank">Скачать</a> последний релиз этого проекта
-
 - Релизы: https://github.com/WebProWWW/gulp-web/releases
 - Распаковать скаченный архив в директорию вашего нового проекта
 
