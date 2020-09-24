@@ -1,6 +1,3 @@
-[submodule "src/depends/vendor/jquery-dist"]
-	path = src/depends/vendor/jquery-dist
-	url = https://github.com/jquery/jquery-dist.git
 [submodule "src/depends/vendor/bootstrap"]
 	path = src/depends/vendor/bootstrap
 	url = https://github.com/twbs/bootstrap.git
