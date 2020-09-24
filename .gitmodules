@@ -1,4 +1,0 @@
-[submodule "src/depends/vendor/bootstrap"]
-	path = src/depends/vendor/bootstrap
-	url = https://github.com/twbs/bootstrap.git
-	branch = stable
