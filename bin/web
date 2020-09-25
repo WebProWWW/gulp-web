@@ -7,7 +7,7 @@ FILE_HOSTS="/etc/hosts";
 FILE_HOSTS_TMP="${PATH_WWW}/hosts.tmp";
 
 # STR
-STR_TYPE_LIST='\n1 - новый (gulp) \n2 - новый (пустой)\n3 - обновить hosts\n4 - удалить проект\n\nВведите цифру:';
+STR_TYPE_LIST='\n1 - новый (gulp) \n2 - новый (пустой)\n3 - обновить hosts\n4 - удалить проект\n5 - Ссылка node_modules\n\nВведите цифру:';
 STR_TYPE_ERR='Пожалуйста введите цифру от 1 до 4';
 STR_ENABLE='Проекты:';
 STR_PROJECT='проект:';
@@ -63,6 +63,11 @@ function rmProject () {
     updateHostsFile;
 }
 
+function linkNodeModules () {
+    readProjectName false;
+    ln -s "${PATH_SOURCE}/node_modules" "${PROJECT_PATH}/node_modules";
+}
+
 function init () {
     echo -e "\n${STR_ENABLE}\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n";
     ls "${PATH_WWW}/";
@@ -74,6 +79,7 @@ function init () {
         "2" ) newProjectEmpty ;;
         "3" ) updateHostsFile;;
         "4" ) rmProject ;;
+        "5" ) linkNodeModules ;;
         * )
             echo -e "\n${STR_TYPE_ERR}";
             init;
