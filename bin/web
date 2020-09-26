@@ -7,7 +7,7 @@ FILE_HOSTS="/etc/hosts";
 FILE_HOSTS_TMP="${PATH_WWW}/hosts.tmp";
 
 # STR
-STR_TYPE_LIST='\n1 - новый (gulp) \n2 - новый (пустой)\n3 - обновить hosts\n4 - удалить проект\n5 - Ссылка node_modules\n\nВведите цифру:';
+STR_TYPE_LIST='\n1 - новый (gulp) \n2 - новый (пустой)\n3 - обновить hosts\n4 - удалить проект\n5 - Ссылка node_modules\n6 - Запустить проект(gulp)\n\nВведите цифру:';
 STR_TYPE_ERR='Пожалуйста введите цифру от 1 до 4';
 STR_ENABLE='Проекты:';
 STR_PROJECT='проект:';
@@ -68,6 +68,13 @@ function linkNodeModules () {
     ln -s "${PATH_SOURCE}/node_modules" "${PROJECT_PATH}/node_modules";
 }
 
+function openProjectGulp () {
+    readProjectName false;
+    subl -a $PROJECT_PATH
+    open "http://${PROJECT_NAME}.loc"
+    gulp --cwd $PROJECT_PATH
+}
+
 function init () {
     echo -e "\n${STR_ENABLE}\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _\n";
     ls "${PATH_WWW}/";
@@ -80,6 +87,7 @@ function init () {
         "3" ) updateHostsFile;;
         "4" ) rmProject ;;
         "5" ) linkNodeModules ;;
+        "6" ) openProjectGulp ;;
         * )
             echo -e "\n${STR_TYPE_ERR}";
             init;
