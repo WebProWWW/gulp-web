@@ -11,8 +11,6 @@ const cssnano = require('cssnano')
 const coffee = require('gulp-coffee')
 const uglify = require('gulp-uglify')
 const livereload = require('gulp-livereload')
-const open = require('gulp-open')
-const path = require('path')
 
 
 /* CONFIG
@@ -28,9 +26,6 @@ const conf = {
         includeCoffee: { hardFail: false, includePaths: __dirname + '/src/coffee' },
         includeStylus: { hardFail: false, includePaths: __dirname + '/src/stylus' },
         includeDepends: { hardFail: false, includePaths: __dirname + '/src/depends' },
-        open: {
-            uri: 'http://'+path.basename(__dirname)+'.loc'
-        },
     },
     // CSS
     stylusWatch: './src/stylus/**/*.styl',
@@ -137,7 +132,6 @@ function reloadPage(done) {
 
  exports.default = function() {
     livereload.listen()
-    src('./').pipe(open(conf.opt.open))
     watch(conf.stylusWatch, compileStylus)
     watch(conf.coffeeWatch, compileCoffee)
     watch(conf.htmlWatch, includeHtml)
