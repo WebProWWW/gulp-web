@@ -1,6 +1,7 @@
 
-# Gulp шаблон для web верстки
-## Stylus CoffeeScript Vue
+# Gulp шаблон для web
+## Компиляция Stylus CoffeeScript Vue и LiveReload
+###Перед началом
 
 Убедитесь, что у вас установлен
 <a href="https://nodejs.org/en/download/" target="_blank">Node</a>
@@ -24,29 +25,30 @@
 
 ```
 public_html/                Корень сайта доступная через браузер.
-    css/                    Вывод скомпилированных CSS
-    js/                     Вывод скомпилированных JavaScript
-    index.html              Входной файл
-src/                        Ресурсы для Gulp
-    stylus/                 Препроцессор Stylus
+    css/                    Скомпилированные файлы Stylus
+    js/                     Скомпилированные файлы CoffeeScript
+    vue/                    Скомпилированные Vue приложении 
+    index.html              
+
+src/
+    coffee/                 CoffeeScript
+        inc/                Классы, библиотеки, ...
+        main.coffee         Компилируется в public_html/js/main.js
+        example.coffee      Компилируется в public_html/js/example.js                        
+
+    stylus/                 Stylus
         lib/                Функции и т.п.
         main.styl           Компилируется в public_html/css/main.css
         example.styl        Компилируется в public_html/css/example.css
-    coffee/                 Синтаксический сахар CoffeeScript
-        lib/                Классы файлы и т.п
-        main.coffee         Компилируется в public_html/js/main.js
-        example.coffee      Компилируется в public_html/js/example.js
+
     depends/                Зависимости
-        vendor/             Библиотеки jQuery, Bootstrap и т.п
-        main.depends.css    Копируется в public_html/css/main.depends.css
-        main.depends.js     Копируется в public_html/js/main.depends.js
+        vendor/             Библиотеки jQuery, Bootstrap, ...
+        depends.css         Копируется в public_html/css/depends.css
+        depends.js          Копируется в public_html/js/depends.js
         any.depends.css     Копируется в public_html/css/any.depends.css
         any.depends.js      Копируется в public_html/js/any.depends.js
-    html/                   HTML страницы
-        tpl/                HTML кусочки кода header, footer и т.п.
-        index.html          Копируется в public_html/index.html
-        about.html          Копируется в public_html/about.html
-Gulpfile.js                 Конфигурация Gulp
+
+gulpfile.js                 Конфигурация Gulp
 .browserslistrc             Совместимость с браузерами
 ```
 
@@ -73,14 +75,26 @@ Gulpfile.js                 Конфигурация Gulp
 
 #### Установка зависимостей и запуск
 
-- Открыть директорию проекта в консоле `cd /path-to/my-project`
+- Открыть директорию в терминале `cd /path-to/my-project`
 - Выполните команду `npm install`
-- После успешной установки зависимостей запустить `gulp`
+- После успешной установки зависимостей
+    - Команда для разработки: `gulp --dev`
+    - Команда для сборки (Vue минифицируется): `gulp`
 
 ```Shell
 $ cd /path/to/my-project
 $ npm install
 ...
+```
+####Для разработки:
+```Shell
+$ gulp --dev
+```
+Команда `gulp` с ключом `--dev` следит за изменениями файлов (указанные в файле `gulpfile.js`) компилирует Stylus, CoffeeScript, Vue компонент и обновляет содержимое браузера.
+
+После запуска открыть проект в браузере и активировать расширение LiveReload для браузера.
+####Для сборки:
+```Shell
 $ gulp
 ```
 
