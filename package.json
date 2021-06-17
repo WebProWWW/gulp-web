@@ -1,8 +1,8 @@
 {
   "name": "gulp-web",
-  "version": "1.0.0",
-  "description": "Web Разработка с Gulp",
-  "main": "Gulpfile.js",
+  "version": "6.0.0",
+  "description": "Gulp шаблон для web верстки",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "none"
   },
@@ -16,7 +16,8 @@
     "CoffeeScript",
     "HTML",
     "Livereload",
-    "PHP"
+    "PHP",
+    "Vue"
   ],
   "author": "Timur Vliyev",
   "license": "BSD 3-Clause",
@@ -28,6 +29,10 @@
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",
     "autoprefixer": "^9.8.0",
+    "babel-loader": "^8.2.2",
+    "coffee-loader": "^3.0.0",
+    "coffeescript": "^2.5.1",
+    "css-loader": "^5.2.6",
     "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
     "gulp-coffee": "^3.0.3",
@@ -36,7 +41,17 @@
     "gulp-livereload": "^4.0.2",
     "gulp-postcss": "^8.0.0",
     "gulp-stylus": "^2.7.0",
-    "gulp-uglify": "^3.0.2"
+    "postcss": "^8.3.0",
+    "postcss-loader": "^5.3.0",
+    "style-loader": "^2.0.0",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^6.0.0",
+    "vinyl-named": "^1.1.0",
+    "vue-loader": "^15.9.7",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^5.38.1",
+    "webpack-stream": "^6.1.2",
+    "yargs": "^17.0.1"
   },
   "dependencies": {}
 }

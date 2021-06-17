@@ -1,142 +1,201 @@
-/* PLUGINS
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-const { src, dest, watch } = require('gulp')
-const include = require('gulp-include')
-const header = require('gulp-header')
-const stylus = require('gulp-stylus')
-const postcss = require('gulp-postcss')
-const autoprefixer = require('autoprefixer')
-const cssnano = require('cssnano')
-const coffee = require('gulp-coffee')
-const uglify = require('gulp-uglify')
-const livereload = require('gulp-livereload')
-
-
-/* CONFIG
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-const conf = {
-    // OPTIONS
-    opt: {
-        header: '/*!\n * @author Timur Valiyev\n * @link https://webprowww.github.io\n */\n',
-        stylus: { compress: false },
-        postcss: [ autoprefixer(), cssnano() ],
-        coffee: { bare: false, transpile: { presets: ["@babel/preset-env"] } },
-        includeCoffee: { hardFail: false, includePaths: __dirname + '/src/coffee' },
-        includeStylus: { hardFail: false, includePaths: __dirname + '/src/stylus' },
-        includeDepends: { hardFail: false, includePaths: __dirname + '/src/depends' },
-    },
-    // CSS
-    stylusWatch: './src/stylus/**/*.styl',
-    stylusSrc: './src/stylus/*.styl',
-    stylusDest: './public_html/css',
-    // JS
-    coffeeWatch: './src/coffee/**/*.coffee',
-    coffeeSrc: './src/coffee/*.coffee',
-    coffeeDest: './public_html/js',
-    // JS DEPENDS
-    dependsJsWatch: './src/depends/**/*.js',
-    dependsJsSrc: './src/depends/*.js',
-    dependsJsDest: './public_html/js',
-    // CSS DEPENDS
-    dependsCssWatch: './src/depends/**/*.css',
-    dependsCssSrc: './src/depends/*.css',
-    dependsCssDest: './public_html/css',
-    // HTML
-    htmlWatch: './src/html/**/*.html',
-    htmlSrc: './src/html/*.html',
-    htmlDest: './public_html',
-    // WATCH
-    watcher: [
-        './**/*.php',
-        './public_html/**/*.svg',
-        './public_html/**/*.png',
-        './public_html/**/*.jpg',
-        '!./node_modules/**',
-        '!./runtime/**',
-        '!./vendor/**',
-    ]
-}
+const {
+    src,
+    dest,
+    watch,
+    series
+}                               = require('gulp')
+const {
+    VueLoaderPlugin
+}                               = require('vue-loader')
+const stylus                    = require('gulp-stylus')
+const postcss                   = require('gulp-postcss')
+const coffee                    = require('gulp-coffee')
+const include                   = require('gulp-include')
+const livereload                = require('gulp-livereload')
+const header                    = require('gulp-header')
+const autoprefixer              = require('autoprefixer')
+const cssnano                   = require('cssnano')
+const webpack                   = require('webpack')
+const webpackStream             = require('webpack-stream')
+const argv                      = require('yargs').argv
+const named                     = require('vinyl-named')
 
 
-/* FUNCTIONS
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+const copy = '/*!\n * @author Timur Valiyev\n * @link https://webprowww.github.io\n */\n'
+
+
+let DEV_MODE = false;
 
 function error (err, done) {
-    console.log(err.message)
+    if (err != null) {
+        console.log(err.message)
+    }
     return done()
 }
 
-function compileCoffee(done) {
-    return src(conf.coffeeSrc)
+
+function compileVue(done) {
+    return src(['./src/vue/*.coffee'])
         .on('end', function() { return done() })
         .on('error', function (err) { return error(err, done) })
-        .pipe(include(conf.opt.includeCoffee).on('error', function(err) { return error(err, done) }))
-        .pipe(coffee(conf.opt.coffee).on('error', function(err) { return error(err, done) }))
-        .pipe(uglify().on('error', function(err) { return error(err, done) }))
-        .pipe(header(conf.opt.header))
-        .pipe(dest(conf.coffeeDest))
+        .pipe(named())
+        .pipe(webpackStream({
+            mode: DEV_MODE ? 'development' : 'production',
+            module: {
+                rules: [
+                    {
+                        test: /\.stylus$/,
+                        use: [
+                            'style-loader',
+                            'css-loader',
+                            {
+                                loader: 'postcss-loader',
+                                options: {
+                                    postcssOptions: {
+                                        plugins: [ 'autoprefixer', 'cssnano' ],
+                                    },
+                                },
+                            },
+                            {
+                                loader: 'stylus-loader',
+                                options: {
+                                    stylusOptions: {
+                                        compress: false,
+                                    },
+                                },
+                            },
+                        ],
+                    },
+                    {
+                        test: /\.coffee$/,
+                        loader: 'coffee-loader',
+                        options: {
+                            bare: false,
+                            transpile: {
+                                presets: [ '@babel/preset-env' ]
+                            },
+                        },
+                    },
+                    {
+                        test: /\.vue$/,
+                        loader: 'vue-loader',
+                    },
+                    {
+                        test: /\.js$/,
+                        exclude: /(node_modules|bower_components)/,
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [ '@babel/preset-env' ],
+                        },
+                    },
+                ],
+            },
+            plugins: [
+                new VueLoaderPlugin(),
+            ],
+            output: {
+                filename: '[name].js',
+            },
+        }, webpack).on('error', function(err) { return error(err, done) }))
+        .pipe(dest('./public_html/vue'))
         .pipe(livereload())
 }
+
+
+function compileCoffee(done) {
+    return src('./src/coffee/*.coffee')
+        .on('end', function() { return done() })
+        .on('error', function (err) { return error(err, done) })
+        .pipe(include({
+            hardFail: false,
+            includePaths: __dirname + '/src/coffee/inc',
+        }).on('error', function(err) { return error(err, done) }))
+        .pipe(coffee({
+            bare: false,
+            transpile: {
+                presets: [ '@babel/preset-env' ],
+            },
+        }).on('error', function(err) { return error(err, done) }))
+        .pipe(header(copy))
+        .pipe(dest('./public_html/js'))
+        .pipe(livereload())
+}
+
 
 function compileStylus(done) {
-    return src(conf.stylusSrc)
+    return src('./src/stylus/*.styl')
         .on('end', function() { return done() })
         .on('error', function (err) { return error(err, done) })
-        .pipe(stylus(conf.opt.stylus).on('error', function(err) { return error(err, done) }))
-        .pipe(postcss(conf.opt.postcss).on('error', function(err) { return error(err, done) }))
-        .pipe(include(conf.opt.includeStylus).on('error', function(err) { return error(err, done) }))
-        .pipe(header(conf.opt.header))
-        .pipe(dest(conf.stylusDest))
+        .pipe(stylus({
+            compress: false,
+        }).on('error', function(err) { return error(err, done) }))
+        .pipe(postcss([
+            autoprefixer(),
+            cssnano(),
+        ]).on('error', function(err) { return error(err, done) }))
+        .pipe(header(copy))
+        .pipe(dest('./public_html/css'))
         .pipe(livereload())
 }
+
 
 function dependsJs(done) {
-    return src(conf.dependsJsSrc)
+    return src('./src/depends/*.js')
         .on('end', function() { return done() })
         .on('error', function (err) { return error(err, done) })
-        .pipe(include(conf.opt.includeDepends).on('error', function(err) { return error(err, done) }))
-        .pipe(dest(conf.dependsJsDest))
+        .pipe(include({
+            hardFail: false,
+            includePaths: __dirname + '/src/depends/vendor',
+        }).on('error', function(err) { return error(err, done) }))
+        .pipe(dest('./public_html/js'))
         .pipe(livereload())
-
 }
+
 
 function dependsCss(done) {
-    return src(conf.dependsCssSrc)
+    return src('./src/depends/*.css')
         .on('end', function() { return done() })
         .on('error', function (err) { return error(err, done) })
-        .pipe(include(conf.opt.includeDepends).on('error', function(err) { return error(err, done) }))
-        .pipe(dest(conf.dependsCssDest))
+        .pipe(include({
+            hardFail: false,
+            includePaths: __dirname + '/src/depends/vendor',
+        }).on('error', function(err) { return error(err, done) }))
+        .pipe(dest('./public_html/css'))
         .pipe(livereload())
 }
 
-function includeHtml(done) {
-    return src(conf.htmlSrc)
-        .on('end', function() { return done() })
-        .on('error', function (err) { return error(err, done) })
-        .pipe(include(conf.opt.include).on('error', function(err) { return error(err, done) }))
-        .pipe(dest(conf.htmlDest))
-        .pipe(livereload())
-}
 
 function reloadPage(done) {
     livereload.reload()
-    done()
+    return done()
 }
 
 
-/* TASKS
- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-
- exports.default = function() {
-    livereload.listen()
-    watch(conf.stylusWatch, compileStylus)
-    watch(conf.coffeeWatch, compileCoffee)
-    watch(conf.htmlWatch, includeHtml)
-    watch(conf.dependsJsWatch, dependsJs)
-    watch(conf.dependsCssWatch, dependsCss)
-    watch(conf.watcher, reloadPage)
+exports.default = function(done) {
+    if (argv.dev === true) {
+        DEV_MODE = true;
+        livereload.listen()
+        watch([
+            './src/vue/**/*.vue',
+            './src/vue/**/*.coffee'
+        ], compileVue)
+        watch('./src/coffee/**/*.coffee', compileCoffee)
+        watch('./src/stylus/**/*.styl', compileStylus)
+        watch('./src/depends/**/*.js', dependsJs)
+        watch('./src/depends/**/*.css', dependsCss)
+        watch([
+            './**/*.php',
+            './public_html/**/*.html',
+            './public_html/**/*.svg',
+            './public_html/**/*.png',
+            './public_html/**/*.jpg',
+            '!./node_modules/**',
+            '!./runtime/**',
+            '!./vendor/**',
+        ], reloadPage)
+        return done()
+    }
+    return series(compileVue, compileCoffee, compileStylus, dependsJs, dependsCss)(done)
 }
 

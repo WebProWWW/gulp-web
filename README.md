@@ -1,6 +1,6 @@
 
 # Gulp шаблон для web верстки
-## Предназначен для локального веб сервера
+## Stylus CoffeeScript Vue
 
 Убедитесь, что у вас установлен
 <a href="https://nodejs.org/en/download/" target="_blank">Node</a>

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # CONFIG
-PATH_WWW="/Users/timur/www";
+PATH_WWW="/Volumes/data/www";
 PATH_SOURCE="${PATH_WWW}/gulp-web";
 FILE_HOSTS="/etc/hosts";
 FILE_HOSTS_TMP="${PATH_WWW}/hosts.tmp";
