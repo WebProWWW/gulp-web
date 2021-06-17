@@ -1,5 +1,28 @@
 
 # Gulp шаблон для web
+
+<a href="https://www.jetbrains.com" target="_blank">
+    <img height="60" style="max-width: 100%; margin: 15px;" src="https://raw.githubusercontent.com/JetBrains/logos/master/web/jetbrains/jetbrains-variant-2.svg">
+</a>
+<a href="https://gulpjs.com" target="_blank">
+    <img height="60" style="max-width: 100%; margin: 15px;" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
+</a>
+<a href="https://webpack.js.org" target="_blank">
+    <img height="60" style="max-width: 100%; margin: 15px;" src="https://camo.githubusercontent.com/b0573f87b0786eda63c76f2a9a1358e7a653783c25c03c6c908a00b70c713d78/68747470733a2f2f7765627061636b2e6a732e6f72672f6173736574732f69636f6e2d7371756172652d6269672e737667">
+</a>
+<a href="https://coffeescript.org">
+    <img height="60" style="max-width: 100%; margin: 15px;" src="https://raw.githubusercontent.com/jashkenas/coffeescript/master/documentation/site/icon.svg">
+</a>
+<a href="https://stylus-lang.com" target="_blank">
+    <img height="60" style="max-width: 100%; margin: 15px;" src="https://raw.githubusercontent.com/stylus/stylus/dev/graphics/Vectors/stylus.svg">
+</a>
+<a href="https://ru.vuejs.org" target="_blank">
+    <img height="60" style="max-width: 100%; margin: 15px;" src="https://camo.githubusercontent.com/c8f91d18976e27123643a926a2588b8d931a0292fd0b6532c3155379e8591629/68747470733a2f2f7675656a732e6f72672f696d616765732f6c6f676f2e706e67">
+</a>
+<a href="https://nodejs.org" target="_blank">
+    <img height="60" style="max-width: 100%; margin: 15px;" src="https://raw.githubusercontent.com/nodejs/nodejs.org/master/static/images/logos/js-green.svg">
+</a>
+
 ## Компиляция Stylus CoffeeScript Vue и LiveReload
 ### Перед началом
 
