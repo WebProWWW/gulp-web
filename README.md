@@ -1,7 +1,7 @@
 
 # Gulp шаблон для web
 ## Компиляция Stylus CoffeeScript Vue и LiveReload
-###Перед началом
+### Перед началом
 
 Убедитесь, что у вас установлен
 <a href="https://nodejs.org/en/download/" target="_blank">Node</a>
