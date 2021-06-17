@@ -31,22 +31,28 @@ public_html/                Корень сайта доступная чере�
     index.html              
 
 src/
-    coffee/                 CoffeeScript
+    coffee/                 
         inc/                Классы, библиотеки, ...
         main.coffee         Компилируется в public_html/js/main.js
         example.coffee      Компилируется в public_html/js/example.js                        
 
-    stylus/                 Stylus
+    stylus/                 
         lib/                Функции и т.п.
         main.styl           Компилируется в public_html/css/main.css
         example.styl        Компилируется в public_html/css/example.css
 
-    depends/                Зависимости
+    depends/
         vendor/             Библиотеки jQuery, Bootstrap, ...
         depends.css         Копируется в public_html/css/depends.css
         depends.js          Копируется в public_html/js/depends.js
         any.depends.css     Копируется в public_html/css/any.depends.css
         any.depends.js      Копируется в public_html/js/any.depends.js
+    
+    vue/                    Файлы компилирует webpack (webpack-stream)
+      App.vue               Vue компонент
+      app.coffee            Компилируктся в public_html/vue/app.js
+      Any.vue               Vue компонент
+      any.coffee            Компилируктся в public_html/vue/any.js
 
 gulpfile.js                 Конфигурация Gulp
 .browserslistrc             Совместимость с браузерами
@@ -86,14 +92,14 @@ $ cd /path/to/my-project
 $ npm install
 ...
 ```
-####Для разработки:
+#### Для разработки:
 ```Shell
 $ gulp --dev
 ```
 Команда `gulp` с ключом `--dev` следит за изменениями файлов (указанные в файле `gulpfile.js`) компилирует Stylus, CoffeeScript, Vue компонент и обновляет содержимое браузера.
 
 После запуска открыть проект в браузере и активировать расширение LiveReload для браузера.
-####Для сборки:
+#### Для сборки:
 ```Shell
 $ gulp
 ```
