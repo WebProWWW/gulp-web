@@ -48,7 +48,7 @@ function compileVue(done) {
                         test: /\.stylus$/,
                         use: [
                             'style-loader',
-                            'css-loader',
+                            'css-loader?url=false',
                             {
                                 loader: 'postcss-loader',
                                 options: {
