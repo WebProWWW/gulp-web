@@ -2,30 +2,36 @@
 @require './lib/fun'
 
 /*
- * Project Style START (Mobile First)
+ * Project Style (Mobile First)
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @require './media/all'
 
 /*
- * Small devices (phones, 576px and up)                          ≥ 576px
+ * sm                                                             ≥ 576px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @media (min-width: 576px)
   @require 'media/sm'
 
 /*
- * Medium devices (tablets, 768px and up)                        ≥ 768px
+ * md                                                             ≥ 768px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @media (min-width: 768px)
   @require 'media/md'
 
 /*
- * Large devices (desktops, 992px and up)                        ≥ 992px
+ * lg                                                             ≥ 992px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @media (min-width: 992px)
   @require 'media/lg'
 
 /*
- * Extra large devices (large desktops, 1200px and up)          ≥ 1200px
+ * xl                                                            ≥ 1200px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @media (min-width: 1200px)
   @require 'media/xl'
+
+/*
+ * xxl                                                           ≥ 1400px
+ * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+@media (min-width: 1400px)
+  @require 'media/xxl'
