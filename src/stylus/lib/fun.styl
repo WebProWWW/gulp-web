@@ -4,28 +4,31 @@ mpd(m=0, p=0, d=block)
   padding p
 
 resetLn(c=black, hc=black, td=false, htd=false)
-  border none
-  &, &:active, &:focus
-    color c
-    text-decoration none unless td
+  &, &:active, &:focus, &:hover
+    border none
     outline none
     appearance none
+    text-decoration td ? underline : none
+    color c
     cursor pointer
   &:hover
-    text-decoration none unless htd
-    outline none
+    text-decoration htd ? underline : none
     color hc
 
-resetBtn()
-  display block
-  box-sizing border-box
-  width 100%
-  background transparent
-  text-align center
-  outline none
-  border none
-  appearance none
-  cursor pointer
+resetBtn(d=block, c=black, hc=black)
+  &, &:active, &:focus, &:hover
+    border none
+    outline none
+    appearance none
+    text-decoration none
+    display d
+    box-sizing border-box
+    width 100%
+    color c
+    text-align center
+    cursor pointer
+  &:hover
+    color hc
 
 trans(t=160)
   t = (t / 1000s)
