@@ -48,7 +48,12 @@ function compileVue(done) {
                         test: /\.stylus$/,
                         use: [
                             'style-loader',
-                            'css-loader?url=false',
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    url: false,
+                                },
+                            },
                             {
                                 loader: 'postcss-loader',
                                 options: {
@@ -132,7 +137,7 @@ function compileStylus(done) {
         }).on('error', function(err) { return error(err, done) }))
         .pipe(postcss([
             autoprefixer(),
-            cssnano(),
+            cssnano()
         ]).on('error', function(err) { return error(err, done) }))
         .pipe(header(copy))
         .pipe(dest('./public_html/css'))
