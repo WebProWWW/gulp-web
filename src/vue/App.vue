@@ -32,7 +32,7 @@ export default
     # methods:
 
     computed:
-        title: -> 'Vue App'
+        title: -> 'Vue 2.6.14'
 
     # watch:
 

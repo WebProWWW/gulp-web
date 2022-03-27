@@ -1,5 +1,5 @@
 
-# Gulp шаблон для web
+# Gulp шаблон для верстки
 
 <a href="https://www.jetbrains.com" target="_blank">
     <img height="60" style="max-width: 100%; margin: 15px;" src="https://raw.githubusercontent.com/JetBrains/logos/master/web/jetbrains/jetbrains-variant-2.svg">
@@ -24,17 +24,16 @@
 </a>
 
 ## Компиляция Stylus CoffeeScript Vue и LiveReload
-### Перед началом
 
-Убедитесь, что у вас установлен
-<a href="https://nodejs.org/en/download/" target="_blank">Node</a>
+## Установка
+
+Установка
+<a href="https://nodejs.org/en/download/" target="_blank">Node.js</a>
 и
 <a href="https://gulpjs.com/docs/en/getting-started/quick-start" target="_blank">Gulp CLI</a>
 
 - Node: https://nodejs.org/en/download/
 - Gulp: https://gulpjs.com/docs/en/getting-started/quick-start
-
-## Установка
 
 #### Расширение <a href="http://livereload.com" target="_blank">LiveReload</a> для браузера
 - Google Chrome: https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
