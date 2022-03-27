@@ -1,21 +1,22 @@
 <template>
-<div>
+<div class="container">
 
-<h3>{{ title }}</h3>
+<h3>Vue 2.6.14</h3>
 
-</div><!-- root -->
+</div><!-- .root -->
 </template>
+
 
 <!-- * * * * * * * * * * * * * * * CoffeeScript * * * * * * * * * * * * * * * -->
 <script lang="coffee">
 
-# import AppComp from '@/components/AppComp'
+# import AppComponent from '@/components/AppComponent'
 
 export default
 
     name: 'App'
 
-    # components: {}
+    # components: { AppComponent }
 
     # beforeCreate: () ->
 
@@ -31,12 +32,10 @@ export default
 
     # methods:
 
-    computed:
-        title: -> 'Vue 2.6.14'
-
-    # watch:
+    # computed:
 
 </script>
+
 
 <!-- * * * * * * * * * * * * * * * * Stylus * * * * * * * * * * * * * * * * * -->
 <style lang="stylus" scoped>
@@ -44,23 +43,28 @@ export default
 // @require '../fun'
 
 /*
-* Small devices (phones, 576px and up)                          ≥ 576px
+* sm ≥ 576px
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 // @media (min-width: 576px)
 
 /*
-* Medium devices (tablets, 768px and up)                        ≥ 768px
+* md ≥ 768px
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 // @media (min-width: 768px)
 
 /*
-* Large devices (desktops, 992px and up)                        ≥ 992px
+* lg ≥ 992px
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 // @media (min-width: 992px)
 
 /*
-* Extra large devices (large desktops, 1200px and up)          ≥ 1200px
+* xl ≥ 1200px
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 // @media (min-width: 1200px)
+
+/*
+* xxl ≥ 1400px
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+// @media (min-width: 1400px)
 
 </style>
