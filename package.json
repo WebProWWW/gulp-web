@@ -34,7 +34,7 @@
     "coffeescript": "~2",
     "css-loader": "~6",
     "cssnano": "~5",
-    "gulp": "^4.0.2",
+    "gulp": "~4",
     "gulp-coffee": "~3",
     "gulp-header": "~2",
     "gulp-include": "~2",
