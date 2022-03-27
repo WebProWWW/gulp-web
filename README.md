@@ -27,7 +27,6 @@
 
 ## Установка
 
-Установка
 <a href="https://nodejs.org/en/download/" target="_blank">Node.js</a>
 и
 <a href="https://gulpjs.com/docs/en/getting-started/quick-start" target="_blank">Gulp CLI</a>
