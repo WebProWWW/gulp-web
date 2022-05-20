@@ -193,8 +193,6 @@ exports.default = function(done) {
             './**/*.php',
             './public_html/**/*.html',
             './public_html/**/*.svg',
-            './public_html/**/*.png',
-            './public_html/**/*.jpg',
             '!./node_modules/**',
             '!./runtime/**',
             '!./vendor/**',
