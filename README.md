@@ -2,7 +2,7 @@
 # Gulp шаблон для верстки
 
 <a href="https://www.jetbrains.com" target="_blank">
-    <img height="60" style="max-width: 100%; margin: 15px;" src="https://raw.githubusercontent.com/JetBrains/logos/master/web/jetbrains/jetbrains-variant-2.svg">
+    <img height="60" style="max-width: 100%; margin: 15px;" src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg">
 </a>
 <a href="https://gulpjs.com" target="_blank">
     <img height="60" style="max-width: 100%; margin: 15px;" src="https://raw.githubusercontent.com/gulpjs/artwork/master/gulp-2x.png">
@@ -22,6 +22,8 @@
 <a href="https://nodejs.org" target="_blank">
     <img height="60" style="max-width: 100%; margin: 15px;" src="https://raw.githubusercontent.com/nodejs/nodejs.org/master/static/images/logos/js-green.svg">
 </a>
+
+Огромная благодарность компании <a href="https://www.jetbrains.com" target="_blank">JetBrains</a> за поддержку
 
 ## Компиляция Stylus CoffeeScript Vue и LiveReload
 
