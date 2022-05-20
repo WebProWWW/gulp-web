@@ -3,7 +3,7 @@ mpd(m=0, p=0, d=block)
   margin m
   padding p
 
-resetLn(c=black, hc=black, td=false, htd=false)
+resetLn(c=#1C6EFC, hc=#1558CA, td=false, htd=false)
   &, &:active, &:focus, &:hover
     border none
     outline none
@@ -15,26 +15,26 @@ resetLn(c=black, hc=black, td=false, htd=false)
     text-decoration htd ? underline : none
     color hc
 
-resetBtn(d=block, c=black, hc=black)
+resetBtn(c=white, bg=#1C6EFC, hc=white, hbg=#175ED7)
   &, &:active, &:focus, &:hover
     border none
     outline none
     appearance none
     text-decoration none
-    display d
+    user-select none
+    display block
+    border-radius 0px
     box-sizing border-box
     width 100%
+    background bg
     color c
     text-align center
     cursor pointer
   &:hover
     color hc
+    background hbg
 
 trans(t=160)
-  t = (t / 1000s)
-  transition t all ease-in-out
-
-transAll(t)
   t = (t / 1000s)
   transition t all ease-in-out
 
