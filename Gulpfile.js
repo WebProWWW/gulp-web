@@ -104,7 +104,7 @@ function compileVue(done) {
             },
         }, webpack).on('error', function(err) { return error(err, done) }))
         .pipe(dest('./public_html/vue'))
-        .pipe(livereload())
+        .on('end', function () { reloadPage(done) })
 }
 
 
@@ -124,7 +124,7 @@ function compileCoffee(done) {
         }).on('error', function(err) { return error(err, done) }))
         .pipe(header(copy))
         .pipe(dest('./public_html/js'))
-        .pipe(livereload())
+        .on('end', function () { reloadPage(done) })
 }
 
 
@@ -141,7 +141,7 @@ function compileStylus(done) {
         ]).on('error', function(err) { return error(err, done) }))
         .pipe(header(copy))
         .pipe(dest('./public_html/css'))
-        .pipe(livereload())
+        .on('end', function () { reloadPage(done) })
 }
 
 
@@ -154,7 +154,7 @@ function dependsJs(done) {
             includePaths: __dirname + '/src/depends/vendor',
         }).on('error', function(err) { return error(err, done) }))
         .pipe(dest('./public_html/js'))
-        .pipe(livereload())
+        .on('end', function () { reloadPage(done) })
 }
 
 
@@ -167,7 +167,7 @@ function dependsCss(done) {
             includePaths: __dirname + '/src/depends/vendor',
         }).on('error', function(err) { return error(err, done) }))
         .pipe(dest('./public_html/css'))
-        .pipe(livereload())
+        .on('end', function () { reloadPage(done) })
 }
 
 
