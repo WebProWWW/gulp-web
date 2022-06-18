@@ -3,45 +3,9 @@
 define('IS_DEV', 1);
 define('ASSET_V', '1');
 
-class App {
+require __DIR__ . '/Assets.php';
 
-    public function css() {
-        return ''
-            .$this->getStyle('css/depends.css')
-            .$this->getStyle('css/main.css')
-        .'';
-    }
-
-    public function js() {
-        return ''
-            .$this->getScript('js/depends.js')
-            .$this->getScript('js/main.js')
-            .$this->getScript('vue/app.js')
-        .'';
-    }
-
-    private function getStyle($file) {
-        $out = '';
-        if (IS_DEV) {
-            $out = '<style>' . file_get_contents(__DIR__ . '/' . $file) . '</style>';
-        } else {
-            $out = '<link rel="stylesheet" href="' . $file . '?v=' . ASSET_V . '">';
-        }
-        return $out;
-    }
-
-    private function getScript($file) {
-        $out = '';
-        if (IS_DEV) {
-            $out = '<script>' . file_get_contents(__DIR__ . '/' . $file) . '</script>';
-        } else {
-            $out = '<script src="' . $file . '?v=' . ASSET_V . '"></script>';
-        }
-        return $out;
-    }
-}
-
-$app = new App;
+$assets = new Assets;
 
 ?>
 <!DOCTYPE html>
@@ -53,17 +17,29 @@ $app = new App;
     <meta name="format-detection" content="address=no">
     <meta name="format-detection" content="email=no">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
-    <?= $app->css() ?>
+    <?= $assets->css() ?>
     <title>New Project</title>
 </head>
 <body>
 
 <div class="container pt-3">
-    <p><a href="https://github.com/WebProWWW/gulp-web" target="_blank">README</a></p>
+    <div class="row">
+        <div class="col-auto">
+            <h5>Utilities</h5>
+        </div>
+        <div class="col-auto ms-auto em-8">
+            <a href="https://github.com/WebProWWW/gulp-web" target="_blank">README</a>
+        </div>
+        <div class="col-auto em-8">
+            <a href="https://ru.vuejs.org/v2/guide/" target="_blank">Vue 2.6.14</a>
+        </div>
+    </div>
+    <hr>
 </div><!-- .container -->
+
 <div class="js-vue-app"></div>
 
-<?= $app->js() ?>
 
+<?= $assets->js() ?>
 </body>
 </html>
