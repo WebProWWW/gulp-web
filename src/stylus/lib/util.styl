@@ -3,35 +3,47 @@
  * Utils
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-for i in (1..100)
-  .em-{i}
-    font-size i * .1 * 1em
+responsive(media='')
+  // Font Size
+  for i in (1..100)
+    .em-{media}{i}
+      font-size i * .1 * 1em
 
-for i in (1..9)
-  .fw-{i}
-    font-weight (i * 100)
+  // Font Weight
+  for i in (1..9)
+    .fw-{media}{i}
+      font-weight (i * 100)
+
+
+responsive()
+
 
 /*
  * sm                                                             ≥ 576px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-// @media (min-width: 576px)
+@media (min-width: 576px)
+  responsive('sm-')
 
 /*
  * md                                                             ≥ 768px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-// @media (min-width: 768px)
+@media (min-width: 768px)
+  responsive('md-')
 
 /*
  * lg                                                             ≥ 992px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-// @media (min-width: 992px)
+@media (min-width: 992px)
+  responsive('lg-')
 
 /*
  * xl                                                            ≥ 1200px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-// @media (min-width: 1200px)
+@media (min-width: 1200px)
+  responsive('xl-')
 
 /*
  * xxl                                                           ≥ 1400px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-// @media (min-width: 1400px)
+@media (min-width: 1400px)
+  responsive('xxl-')
