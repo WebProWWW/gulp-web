@@ -16,17 +16,27 @@
             </code>
         </h6>
         <p>font-size: {{Number(n * .1).toFixed(1)}}em</p>
-        <p :class="'em-'+n">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eligendi impedit, iusto laboriosam doloremque aperiam corrupti dolore! Natus nesciunt, sit dolor et delectus vero eligendi ex libero similique error voluptatum?</p>
+        <div class="border p-3 pb-1 mb-3">
+            <p :class="'em-'+n">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eligendi impedit, iusto laboriosam doloremque aperiam corrupti dolore! Natus nesciunt, sit dolor et delectus vero eligendi ex libero similique error voluptatum?</p>
+        </div>
     </div>
     <div v-if="n == 100">
-        <code><h6>...</h6></code>
-        <code><h6>em-{{n}}</h6></code>
+        <h6><code>...</code></h6>
+        <h6>
+            <code>
+                .em-{{n}}
+                .em-sm-{{n}}
+                .em-md-{{n}}
+                .em-lg-{{n}}
+                .em-xl-{{n}}
+                .em-xxl-{{n}}
+            </code>
+        </h6>
         <p>font-size: {{Number(n * .1).toFixed(1)}}em</p>
     </div>
 </div>
 
 <hr>
-
 <h3>Font Weight</h3>
 
 <div v-for="n in fw" :key="n">
@@ -41,7 +51,9 @@
         </code>
     </h6>
     <p>font-weight: {{ n }}</p>
-    <p :class="'fw-' + (n * .01)">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eligendi impedit, iusto laboriosam doloremque aperiam corrupti dolore! Natus nesciunt, sit dolor et delectus vero eligendi ex libero similique error voluptatum?</p>
+    <div class="border p-3 pb-1 mb-3">
+        <p :class="'fw-' + (n * .01)">Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae eligendi impedit, iusto laboriosam doloremque aperiam corrupti dolore! Natus nesciunt, sit dolor et delectus vero eligendi ex libero similique error voluptatum?</p>
+    </div>
 </div>
 
 </div><!-- .root -->
