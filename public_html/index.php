@@ -3,9 +3,9 @@
 define('IS_DEV', 1);
 define('ASSET_V', '1');
 
-require __DIR__ . '/Assets.php';
+require __DIR__ . '/Asset.php';
 
-$assets = new Assets;
+$asset = new Asset;
 
 ?>
 <!DOCTYPE html>
@@ -17,7 +17,10 @@ $assets = new Assets;
     <meta name="format-detection" content="address=no">
     <meta name="format-detection" content="email=no">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no">
-    <?= $assets->css() ?>
+    <?= $asset->css([
+        'css/depends.css',
+        'css/main.css',
+    ]) ?>
     <title>New Project</title>
 </head>
 <body>
@@ -40,6 +43,10 @@ $assets = new Assets;
 <div class="js-vue-app"></div>
 
 
-<?= $assets->js() ?>
+<?= $asset->js([
+    'js/depends.js',
+    'js/main.js',
+    'vue/app.js',
+]) ?>
 </body>
 </html>
