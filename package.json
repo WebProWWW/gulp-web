@@ -47,7 +47,7 @@
     "stylus": "~0",
     "stylus-loader": "~6",
     "vinyl-named": "~1",
-    "vue-loader": "~15",
+    "vue-loader": "~17",
     "vue-template-compiler": "~2",
     "webpack": "~5",
     "webpack-stream": "~7",
