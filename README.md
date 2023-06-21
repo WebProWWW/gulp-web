@@ -20,7 +20,7 @@
     <img height="90" style="max-width: 100%; margin: 15px;" src="https://camo.githubusercontent.com/c8f91d18976e27123643a926a2588b8d931a0292fd0b6532c3155379e8591629/68747470733a2f2f7675656a732e6f72672f696d616765732f6c6f676f2e706e67">
 </a>
 <a href="https://nodejs.org" target="_blank">
-    <img height="90" style="max-width: 100%; margin: 15px;" src="https://raw.githubusercontent.com/nodejs/nodejs.org/master/static/images/logos/js-green.svg">
+    <img height="90" style="max-width: 100%; margin: 15px;" src="https://raw.githubusercontent.com/nodejs/nodejs.org/main/public/static/images/logo-hexagon.svg">
 </a>
 
 Огромная благодарность компании <a href="https://www.jetbrains.com" target="_blank">JetBrains</a> за поддержку
