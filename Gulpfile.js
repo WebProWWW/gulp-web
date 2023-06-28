@@ -103,7 +103,7 @@ function compileVue(done) {
                 filename: '[name].js',
             },
         }, webpack).on('error', function(err) { return error(err, done) }))
-        .pipe(dest('./public_html/vue'))
+        .pipe(dest('./public_html/js/vue'))
         .on('end', function () { reloadPage(done) })
 }
 
