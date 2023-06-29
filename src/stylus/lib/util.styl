@@ -26,13 +26,23 @@ responsive(media='')
 
   // Max Width
   for i in (1..10)
-    .mw-{media}{i}
+    .max-w-{media}{i}
       max-width i * 100 * 1px
 
   // Max Height
   for i in (1..10)
-    .mh-{media}{i}
+    .max-h-{media}{i}
       max-height i * 100 * 1px
+  
+  // Min Width
+  for i in (1..10)
+    .min-w-{media}{i}
+      min-width i * 100 * 1px
+
+  // Min Height
+  for i in (1..10)
+    .min-h-{media}{i}
+      min-height i * 100 * 1px
 
   // Background Position
   .bg-y-{media}start
