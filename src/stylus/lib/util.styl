@@ -14,10 +14,25 @@ responsive(media='')
     .fw-{media}{i}
       font-weight i * 100
 
+  // Width
+  for i in (1..10)
+    .width-{media}{i}
+      width i * 100 * 1px
+
+  // Height
+  for i in (1..10)
+    .height-{media}{i}
+      height i * 100 * 1px
+
   // Max Width
   for i in (1..10)
     .mw-{media}{i}
       max-width i * 100 * 1px
+
+  // Max Height
+  for i in (1..10)
+    .mh-{media}{i}
+      max-height i * 100 * 1px
 
 
 responsive()
