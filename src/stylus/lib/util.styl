@@ -4,64 +4,92 @@
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 responsive(media='')
-  // Font Size
-  for i in (1..100)
-    .em-{media}{i}
-      font-size i * .1 * 1em
 
-  // Font Weight
-  for i in (1..9)
-    .fw-{media}{i}
-      font-weight i * 100
+    // FONT SIZE
 
-  // Width
-  for i in (1..10)
-    .width-{media}{i}
-      width i * 100 * 1px
+    for i in (1..100)
+        .em-{media}{i}
+            font-size i * .1 * 1em
 
-  // Height
-  for i in (1..10)
-    .height-{media}{i}
-      height i * 100 * 1px
+    // FONT WEIGHT
 
-  // Max Width
-  for i in (1..10)
-    .max-w-{media}{i}
-      max-width i * 100 * 1px
+    for i in (1..9)
+        .fw-{media}{i}
+            font-weight i * 100
 
-  // Max Height
-  for i in (1..10)
-    .max-h-{media}{i}
-      max-height i * 100 * 1px
-  
-  // Min Width
-  for i in (1..10)
-    .min-w-{media}{i}
-      min-width i * 100 * 1px
+    // WIDTH
 
-  // Min Height
-  for i in (1..10)
-    .min-h-{media}{i}
-      min-height i * 100 * 1px
+    for i in (1..10)
+        .width-{media}{i}
+            width i * 100 * 1px
 
-  // Background Position
-  .bg-y-{media}start
-    background-position-y 0
+    .width-{media}auto
+        width auto
 
-  .bg-y-{media}center
-    background-position-y 50%
+    // HEIGHT
 
-  .bg-y-{media}end
-    background-position-y 100%
+    for i in (1..10)
+        .height-{media}{i}
+            height i * 100 * 1px
 
-  .bg-x-{media}start
-    background-position-y 0
+    .height-{media}auto
+        height auto
 
-  .bg-x-{media}center
-    background-position-y 50%
+    // MAX WIDTH
 
-  .bg-x-{media}end
-    background-position-y 100%
+    for i in (1..10)
+        .maxw-{media}{i}
+            max-width i * 100 * 1px
+
+    .maxw-{media}none
+        max-width none
+
+    // MAX HEIGHT
+
+    for i in (1..10)
+        .maxh-{media}{i}
+            max-height i * 100 * 1px
+
+    .maxh-{media}none
+        max-height none
+
+    // MIN WIDTH
+
+    for i in (1..10)
+        .minw-{media}{i}
+            min-width i * 100 * 1px
+
+    .minw-{media}none
+        min-width none
+
+    // MIN HEIGHT
+
+    for i in (1..10)
+        .minh-{media}{i}
+            min-height i * 100 * 1px
+
+    .minh-{media}none
+        min-height none
+
+    // BACKGROUND POSITION
+
+    .bg-y-{media}start
+        background-position-y 0
+
+    .bg-y-{media}center
+        background-position-y 50%
+
+    .bg-y-{media}end
+        background-position-y 100%
+
+    .bg-x-{media}start
+        background-position-y 0
+
+    .bg-x-{media}center
+        background-position-y 50%
+
+    .bg-x-{media}end
+        background-position-y 100%
 
 
 responsive()
@@ -71,28 +99,28 @@ responsive()
  * sm                                                             ≥ 576px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @media (min-width: 576px)
-  responsive('sm-')
+    responsive('sm-')
 
 /*
  * md                                                             ≥ 768px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @media (min-width: 768px)
-  responsive('md-')
+    responsive('md-')
 
 /*
  * lg                                                             ≥ 992px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @media (min-width: 992px)
-  responsive('lg-')
+    responsive('lg-')
 
 /*
  * xl                                                            ≥ 1200px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @media (min-width: 1200px)
-  responsive('xl-')
+    responsive('xl-')
 
 /*
  * xxl                                                           ≥ 1400px
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 @media (min-width: 1400px)
-  responsive('xxl-')
+    responsive('xxl-')
